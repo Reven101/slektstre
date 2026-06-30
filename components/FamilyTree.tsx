@@ -67,8 +67,8 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
     return <PersonCard key={p.id} person={p} role={role} onClick={setSelected} searchState={searchState(p)} />
   }
 
-  const conn = (style: React.CSSProperties) => (
-    <div className="conn-line" style={style} />
+  const conn = (style: React.CSSProperties, key?: React.Key) => (
+    <div key={key} className="conn-line" style={style} />
   )
 
   return (
@@ -121,11 +121,11 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
             {/* Connector 6→5 */}
             <div className="connector" style={{ height: 40 }}>
               {[6.25, 18.75, 31.25, 43.75, 56.25, 68.75, 81.25, 93.75].map((l, i) =>
-                conn({ top: 0, left: `${l}%`, width: '1.5px', height: 20, key: i })
+                conn({ top: 0, left: `${l}%`, width: '1.5px', height: 20 }, `t${i}`)
               )}
               {[12.5, 37.5, 62.5, 87.5].map((c, i) => ([
-                conn({ top: 19, left: `${c - 6.25}%`, right: `${100 - c - 6.25}%`, height: '1.5px', key: `h${i}` }),
-                conn({ top: 20, left: `${c}%`, width: '1.5px', height: 20, key: `v${i}` }),
+                conn({ top: 19, left: `${c - 6.25}%`, right: `${100 - c - 6.25}%`, height: '1.5px' }, `h${i}`),
+                conn({ top: 20, left: `${c}%`, width: '1.5px', height: 20 }, `v${i}`),
               ]))}
             </div>
 
