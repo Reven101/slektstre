@@ -46,9 +46,9 @@ body::after {
   background: radial-gradient(ellipse at center, transparent 60%, rgba(24,10,5,.08) 100%);
 }
 
-/* ── HEADER — muted parchment ── */
+/* ── HEADER — parchment ── */
 .site-header {
-  background: var(--line);
+  background: var(--bg);
   color: var(--ink);
   text-align: center;
   padding: 44px 24px 40px;
@@ -71,7 +71,7 @@ body::after {
   font-size: clamp(3.2rem, 9vw, 7rem);
   font-weight: 900;
   font-style: italic;
-  color: var(--ink);
+  color: #1E3A14;
   letter-spacing: .02em;
   line-height: 1;
   margin-bottom: 18px;

@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <header className="site-header">
         <span className="eyebrow">Slektstre</span>
-        <h1>Halvparten av deg</h1>
+        <h1>Din kjære far og hans søsken</h1>
         <p className="subtitle">
           Hustad&nbsp;·&nbsp;Husberg&nbsp;·&nbsp;Simensen&nbsp;·&nbsp;Werner
         </p>

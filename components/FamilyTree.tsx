@@ -10,19 +10,19 @@ interface FamilyTreeProps {
 }
 
 const ROLES: Record<number, string> = {
-  1: 'Proband',
-  2: 'Far', 3: 'Mor',
-  4: 'Farfar', 5: 'Farmor', 6: 'Morfar', 7: 'Mormor',
-  8: 'Oldefar (ff)', 9: 'Oldemor (ff)', 10: 'Oldefar (fm)', 11: 'Oldemor (fm)',
-  12: 'Oldefar (mf)', 13: 'Oldemor (mf)', 14: 'Oldefar (mm)', 15: 'Oldemor (mm)',
-  16: 'Tipp-oldefar (fff)', 17: 'Tipp-oldemor (fff)',
-  18: 'Tipp-oldefar (ffm)', 19: 'Tipp-oldemor (ffm)',
-  20: 'Tipp-oldefar (fmf)', 21: 'Tipp-oldemor (fmf)',
-  22: 'Tipp-oldefar (fmm)', 23: 'Tipp-oldemor (fmm)',
-  24: 'Tipp-oldefar (mff)', 25: 'Tipp-oldemor (mff)',
-  26: 'Tipp-oldefar (mfm)', 27: 'Tipp-oldemor (mfm)',
-  28: 'Tipp-oldefar (mmf)', 29: 'Tipp-oldemor (mmf)',
-  30: 'Tipp-oldefar (mmm)', 31: 'Tipp-oldemor (mmm)',
+  1: 'Far',
+  2: 'Farfar', 3: 'Farmor',
+  4: 'Oldefar (ff)', 5: 'Oldemor (ff)', 6: 'Oldefar (fm)', 7: 'Oldemor (fm)',
+  8: 'Tippoldefar (fff)', 9: 'Tippoldemor (fff)', 10: 'Tippoldefar (ffm)', 11: 'Tippoldemor (ffm)',
+  12: 'Tippoldefar (fmf)', 13: 'Tippoldemor (fmf)', 14: 'Tippoldefar (fmm)', 15: 'Tippoldemor (fmm)',
+  16: 'Tipp-tippoldefar (fff)', 17: 'Tipp-tippoldemor (fff)',
+  18: 'Tipp-tippoldefar (ffm)', 19: 'Tipp-tippoldemor (ffm)',
+  20: 'Tipp-tippoldefar (fmf)', 21: 'Tipp-tippoldemor (fmf)',
+  22: 'Tipp-tippoldefar (fmm)', 23: 'Tipp-tippoldemor (fmm)',
+  24: 'Tipp-tippoldefar (mff)', 25: 'Tipp-tippoldemor (mff)',
+  26: 'Tipp-tippoldefar (mfm)', 27: 'Tipp-tippoldemor (mfm)',
+  28: 'Tipp-tippoldefar (mmf)', 29: 'Tipp-tippoldemor (mmf)',
+  30: 'Tipp-tippoldefar (mmm)', 31: 'Tipp-tippoldemor (mmm)',
 }
 
 function matchesPerson(p: Person, q: string): boolean {
@@ -102,9 +102,9 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
         <div className="tree-desktop">
           <div className="tree">
 
-            {/* GEN 6 — Tipp-oldeforeldre */}
+            {/* GEN 6 — Tipp-tippoldeforeldre */}
             <div className="gen">
-              <div className="gen-label">Tipp-oldeforeldre</div>
+              <div className="gen-label">Tipp-tippoldeforeldre</div>
               <div className="gen-row">
                 {([16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31] as number[]).reduce<number[][]>((acc, n, i) => {
                   if (i % 2 === 0) acc.push([n])
@@ -148,9 +148,9 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
               )}
             </div>
 
-            {/* GEN 5 — Oldeforeldre */}
+            {/* GEN 5 — Tippoldeforeldre */}
             <div className="gen">
-              <div className="gen-label">Oldeforeldre</div>
+              <div className="gen-label">Tippoldeforeldre</div>
               <div className="gen-row">
                 {[[8,9],[10,11],[12,13],[14,15]].map((pair, i) => (
                   <div key={i} className="gen-side">
@@ -174,9 +174,9 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
               {conn({ top: 17, left: '75%', width: '1.5px', height: 19 })}
             </div>
 
-            {/* GEN 4 — Besteforeldre */}
+            {/* GEN 4 — Oldeforeldre */}
             <div className="gen">
-              <div className="gen-label">Besteforeldre</div>
+              <div className="gen-label">Oldeforeldre</div>
               <div className="gen-row">
                 <div className="gen-side">{card(4)}{card(5)}</div>
                 <div className="gen-side">{card(6)}{card(7)}</div>
@@ -189,9 +189,9 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
               {conn({ top: 0, left: '75%', width: '1.5px', height: 32 })}
             </div>
 
-            {/* GEN 3 — Foreldre */}
+            {/* GEN 3 — Besteforeldre */}
             <div className="gen">
-              <div className="gen-label">Foreldre</div>
+              <div className="gen-label">Besteforeldre</div>
               <div className="gen-row" style={{ justifyContent: 'space-around' }}>
                 <div className="gen-side" style={{ flex: '0 1 auto' }}>{card(2)}</div>
                 <div className="gen-side" style={{ flex: '0 1 auto' }}>{card(3)}</div>
@@ -206,14 +206,14 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
               {conn({ top: 15, left: '50%', width: '1.5px', height: 17 })}
             </div>
 
-            {/* GEN 1 — Proband og søsken */}
+            {/* GEN 1 — Far og søsken */}
             <div className="gen">
-              <div className="gen-label">Deg selv og søsken</div>
+              <div className="gen-label">Far og søsken</div>
               <div style={{ display: 'flex', justifyContent: 'center', gap: 8 }}>
                 {(['ketil', 'pal', 'bente_m'] as const).map(id => {
                   const p = persons.find(x => x.id === id)
                   if (!p) return null
-                  return <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Søster' : 'Bror'} onClick={setSelected} searchState={searchState(p)} />
+                  return <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Tante' : 'Onkel'} onClick={setSelected} searchState={searchState(p)} />
                 })}
                 {card(1)}
               </div>
@@ -225,33 +225,33 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
         {/* ── MOBILE TREE ── */}
         <div className="tree-mobile">
           <div className="gen-section">
-            <div className="gen-label-m">Deg selv og søsken</div>
+            <div className="gen-label-m">Far og søsken</div>
             <div className="gen-cards-row">
               {(['ketil', 'pal', 'bente_m'] as const).map(id => {
                 const p = persons.find(x => x.id === id)
                 if (!p) return null
-                return <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Søster' : 'Bror'} onClick={setSelected} searchState={searchState(p)} />
+                return <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Tante' : 'Onkel'} onClick={setSelected} searchState={searchState(p)} />
               })}
               {card(1)}
             </div>
           </div>
 
           <div className="gen-section">
-            <div className="gen-label-m">Foreldre</div>
+            <div className="gen-label-m">Besteforeldre</div>
             <div className="gen-cards-row">
               {card(2)}{card(3)}
             </div>
           </div>
 
           <div className="gen-section">
-            <div className="gen-label-m">Besteforeldre</div>
+            <div className="gen-label-m">Oldeforeldre</div>
             <div className="gen-cards-row">
               {card(4)}{card(5)}{card(6)}{card(7)}
             </div>
           </div>
 
           <div className="gen-section">
-            <div className="gen-label-m">Oldeforeldre</div>
+            <div className="gen-label-m">Tippoldeforeldre</div>
             <div className="gen-cards-row">
               {card(8)}{card(9)}{card(10)}{card(11)}
               {card(12)}{card(13)}{card(14)}{card(15)}
@@ -259,7 +259,7 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
           </div>
 
           <div className="gen-section">
-            <div className="gen-label-m">Tipp-oldeforeldre</div>
+            <div className="gen-label-m">Tipp-tippoldeforeldre</div>
             <div className="gen-cards-row">
               {([16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31] as number[]).map(n => card(n))}
             </div>

@@ -40,7 +40,7 @@ export default function PersonCard({ person, role, onClick, searchState = '' }: 
         <div className="p-occ">{person.occupation}</div>
       )}
       {person.highlight === 'me' && (
-        <span className="p-me-tag">Proband</span>
+        <span className="p-me-tag">Din far</span>
       )}
     </div>
   )
