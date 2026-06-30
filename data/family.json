@@ -5,7 +5,7 @@
       "ahnentafel": 1,
       "name": "Simen Hustad",
       "gender": "m",
-      "born": "1969",
+      "born": "12. apr 1969",
       "highlight": "me",
       "fatherId": "tom",
       "motherId": "hilde"
@@ -23,14 +23,13 @@
         "Ketil Hustad (f. 25. jul 1959)",
         "Pål Hustad (f. 13. feb 1961)",
         "Bente-Margrethe Hustad (f. 11. nov 1963, g.m. Ohnstad)",
-        "Simen Hustad (f. 1969) — Proband"
+        "Simen Hustad (f. 12. apr 1969) — Proband"
       ]
     },
     {
       "id": "hilde",
       "ahnentafel": 3,
       "name": "Hilde Sofie Simensen",
-      "maiden": "Hilde Sofie Simensen",
       "gender": "f",
       "born": "28. apr 1934",
       "died": "29. sep 2018",
