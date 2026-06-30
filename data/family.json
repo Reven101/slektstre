@@ -1,0 +1,502 @@
+{
+  "persons": [
+    {
+      "id": "simen",
+      "ahnentafel": 1,
+      "name": "Simen Hustad",
+      "gender": "m",
+      "born": "1969",
+      "highlight": "me",
+      "fatherId": "tom",
+      "motherId": "hilde"
+    },
+    {
+      "id": "tom",
+      "ahnentafel": 2,
+      "name": "Tom Hustad",
+      "gender": "m",
+      "born": "1921",
+      "fatherId": "tormod",
+      "motherId": "anne_h"
+    },
+    {
+      "id": "hilde",
+      "ahnentafel": 3,
+      "name": "Hilde Hustad",
+      "maiden": "Simensen",
+      "gender": "f",
+      "born": "1934",
+      "fatherId": "erling",
+      "motherId": "sigrid_s"
+    },
+    {
+      "id": "tormod",
+      "ahnentafel": 4,
+      "name": "Tormod K. Hustad",
+      "gender": "m",
+      "born": "15. feb 1889",
+      "died": "19. aug 1973",
+      "place": "Sandvollan → Oslo",
+      "occupation": "Arkitekt · NS-statsråd",
+      "highlight": "warn",
+      "notes": [
+        "Arkitekt, utdannet NTH 1914. Vant designkonkurransen om NTH-ringen 1914.",
+        "NS-statsråd: Landbruk (1940), Arbeid (1942–44). Dømt for landssvik etter krigen.",
+        "Gift 30. april 1921 med Anne Margrethe Husberg."
+      ],
+      "fatherId": "torris",
+      "motherId": "karoline_b",
+      "spouseId": "anne_h",
+      "marriedDate": "30. april 1921"
+    },
+    {
+      "id": "anne_h",
+      "ahnentafel": 5,
+      "name": "Anne Margrethe Hustad",
+      "maiden": "Husberg",
+      "gender": "f",
+      "born": "20. mar 1901",
+      "died": "10. jan 1995",
+      "notes": [
+        "Levde til Simen var 25 år gammel.",
+        "Gift 30. april 1921 med Tormod K. Hustad.",
+        "Far: Carl Husberg (overretssagfører, Oslo)."
+      ],
+      "fatherId": "carl_husberg",
+      "motherId": "agnethe",
+      "spouseId": "tormod",
+      "marriedDate": "30. april 1921"
+    },
+    {
+      "id": "erling",
+      "ahnentafel": 6,
+      "name": "Erling Simensen",
+      "gender": "m",
+      "born": "28. des 1905",
+      "died": "9. feb 1987",
+      "place": "Drammen → Oslo",
+      "occupation": "Advokat · cand.jur. 1929",
+      "notes": [
+        "Artium Drammens offentlige skole 1925. Cand.jur. 1929.",
+        "Sakfører fra 1929. Kompanjong Sigbjørn Mustad, Gjøvik 1932.",
+        "Bosted Gjøvik: Trondhjemsvegen 61. Siden tilbake til Oslo.",
+        "Gift 1933 med Sigrid Elisabeth Werner (1910–1997).",
+        "Barn: to døtre og én sønn (1934–1942). Hilde (f. 1934) er Simens mor.",
+        "Gravlagt: Ris kirkegård (urnelund), Oslo."
+      ],
+      "fatherId": "christian_julius",
+      "motherId": "inga",
+      "spouseId": "sigrid_s",
+      "marriedYear": "1933"
+    },
+    {
+      "id": "sigrid_s",
+      "ahnentafel": 7,
+      "name": "Sigrid E. Simensen",
+      "maiden": "Werner",
+      "gender": "f",
+      "born": "6. aug 1910",
+      "died": "1997",
+      "place": "Strømsgodset",
+      "notes": [
+        "Registrert som «Elisabeth» i 1910-tellingen.",
+        "Gift 1933 med Erling Simensen (1905–1987).",
+        "Far: Ferdinand Werner (1876–1948). Mor: Sigrid f. Olsen (f. 1876, Drammen)."
+      ],
+      "fatherId": "ferdinand",
+      "motherId": "sigrid_w",
+      "spouseId": "erling",
+      "marriedYear": "1933"
+    },
+    {
+      "id": "torris",
+      "ahnentafel": 8,
+      "name": "Tørris Hustad",
+      "gender": "m",
+      "born": "8. jun 1849",
+      "died": "16. aug 1931",
+      "place": "Øvre Hustad, Sandvollan",
+      "occupation": "Bonde · Ordfører 1907–1919",
+      "notes": [
+        "Bonde på Øvre Hustad, Sandvollan. Ordfører i Sandvollan kommune 1907–1919.",
+        "Dåpsattest (kirkeboken 1849): Tøres Olssen Hustad, døpt 7. okt 1849.",
+        "Far: Ole Tørrissen Hustad (f. 1830, d. 1852). Mor: Anna Lovisa Lorentzdatter (f. 22. mar 1821, Krogshuus).",
+        "Tørris ble trolig oppkalt etter farfar (Ole Tørrissen — sønn av en Tørris)."
+      ],
+      "sources": [
+        { "label": "Dåpsattest 1849, Inderøy", "sourceId": "pd00000041361884" },
+        { "label": "Folketelling 1891, Inderøy" }
+      ],
+      "fatherId": "ole_torrissen",
+      "motherId": "anna_lovisa",
+      "spouseId": "karoline_b",
+      "children": [
+        "Ole Sivert Hustad (f. 1873)",
+        "John Leopold Hustad (f. 1875)",
+        "Peder Konrad Hustad (f. 1878, d. 1933) — agronom, ordfører Leinstrand",
+        "Martin Severin Hustad (f. 1880)",
+        "Kristian Laurits Hustad (f. 1883)",
+        "Einar Marius Hustad (f. 1885)",
+        "Tormod Kristoffer Hustad (f. 1889) — Simens farfar",
+        "Haakon T. Hustad (f. 1892)"
+      ]
+    },
+    {
+      "id": "karoline_b",
+      "ahnentafel": 9,
+      "name": "Karoline Emilie Hustad",
+      "maiden": "Sivertsdatter Bragstad",
+      "gender": "f",
+      "born": "1850",
+      "place": "Bragstad, Inderøy",
+      "notes": [
+        "Far: Sivert Pedersen Bragstad (f. ca. 1816, Bragstad). Sivert var sønn av Peder Sivertsen Bragstad.",
+        "Mor: Margrethe Christiansdatter Volan (f. ca. 1829, Berg i Mosaegen). Margrethes far: Kristian Pedersen Volan."
+      ],
+      "sources": [
+        { "label": "Vielse, Inderøy (Sivert Pedersen Bragstad og Margrethe Christiansdatter Volan)", "sourceId": "pv00000008831226" }
+      ],
+      "fatherId": "sivert_bragstad",
+      "motherId": "margrethe_volan",
+      "spouseId": "torris"
+    },
+    {
+      "id": "carl_husberg",
+      "ahnentafel": 10,
+      "name": "Carl Husberg",
+      "gender": "m",
+      "born": "5. aug 1865",
+      "died": "1929",
+      "place": "Sarpsborg → Oslo",
+      "occupation": "Overretssagfører · cand.jur. 1893",
+      "notes": [
+        "Fullt navn: Karl Amandus Husberg. Gikk som «Carl».",
+        "Artium Kristiania katedralskole 1884 (Meget Godt). Cand.jur. 1893.",
+        "Overretssagfører, egen forretning, Oslo.",
+        "Far: Carl A. Husberg (handelsborger, Sarpsborg, f. ca. 1829 Tune prestegjeld).",
+        "Mor: Anne Margrethe f. Lowum (f. ca. 1837, Borge prestegjeld)."
+      ],
+      "fatherId": "carl_a_husberg",
+      "motherId": "anne_m_lowum",
+      "spouseId": "agnethe"
+    },
+    {
+      "id": "agnethe",
+      "ahnentafel": 11,
+      "name": "Agnethe Jensine Hagen",
+      "gender": "f",
+      "born": "1872",
+      "place": "Kristiania",
+      "notes": [
+        "Datter av garvermester Jens Andersen Hagen og Christiana A. Hagen.",
+        "Kobling til Husberg-linjen bekreftet i 1900-tellingen."
+      ],
+      "fatherId": "jens_hagen",
+      "motherId": "christiana_hagen",
+      "spouseId": "carl_husberg"
+    },
+    {
+      "id": "christian_julius",
+      "ahnentafel": 12,
+      "name": "Christian Julius Simensen",
+      "gender": "m",
+      "born": "16. nov 1858",
+      "died": "1927",
+      "place": "Øvre Eiker",
+      "occupation": "Murmester",
+      "notes": [
+        "Far: Simen Ellefsen (f. 1824, Eker) — derav etternavnet «Simensen».",
+        "Mor: Karoline Torgersdatter.",
+        "Gift med Inga Pauline Sofie f. Skar (1871–1906).",
+        "Inga: datter av Nils Jacobsen Skar (f. 1831, Eker) og Kari Skar (f. 1836, Eker).",
+        "9 barn (1889–ca. 1906). Inga døde da Erling var knapt 1 år gammel."
+      ],
+      "fatherId": "simen_ellefsen",
+      "motherId": "karoline_t",
+      "spouseId": "inga",
+      "children": [
+        "Karoline Kristine Simensen (f. 1889)",
+        "Ragna Amanda Simensen (f. 1891)",
+        "Sigurd Nicolai Simensen (f. og d. 1893) — spedbarnsdød",
+        "Haakon Simensen (f. 1894)",
+        "Harald Simensen (f. 1895)",
+        "Jenny Simensen (f. 1897)",
+        "Arne Simensen (f. 1899)",
+        "Elisabeth Simensen (f. 1904)",
+        "Erling Simensen (f. 1905) — Simens morfar"
+      ]
+    },
+    {
+      "id": "inga",
+      "ahnentafel": 13,
+      "name": "Inga Pauline Sofie Simensen",
+      "maiden": "Skar",
+      "gender": "f",
+      "born": "1871",
+      "died": "1906",
+      "notes": [
+        "Datter av Nils Jacobsen Skar (f. 1831, Eker) og Kari Skar (f. 1836, Eker).",
+        "Døde da sønnen Erling var knapt 1 år gammel."
+      ],
+      "fatherId": "nils_skar",
+      "motherId": "kari_skar",
+      "spouseId": "christian_julius"
+    },
+    {
+      "id": "ferdinand",
+      "ahnentafel": 14,
+      "name": "Ferdinand Werner",
+      "gender": "m",
+      "born": "1. jul 1876",
+      "died": "1948",
+      "place": "Drammen",
+      "occupation": "Leder Werners Magasin",
+      "notes": [
+        "Kontorchef i Glasmagasin (1910-tellingen). Leder Werners Magasin etter 1923.",
+        "Far: Eduard Werner (1851–1923). Mor: Karen (ukjent etternavn).",
+        "Gift med Sigrid f. Olsen (f. 12. mai 1876, Drammen).",
+        "Sigrids far: Carl Johan August Olsen (fuldmægtig, Grønland, Drammen). Sigrids mor: Hilda Lorentse Larsen."
+      ],
+      "fatherId": "eduard_werner",
+      "motherId": "karen_werner",
+      "spouseId": "sigrid_w",
+      "children": [
+        "Birgit Werner (f. 30. jul 1900)",
+        "Thordis Werner (f. 17. okt 1901)",
+        "Edvard Werner (f. 21. apr 1903, d. 1955) — leder Werners Magasin 1933–55",
+        "Aase Werner (f. 24. jan 1905)",
+        "Ferdinand Wilh. Aug. Werner (f. 12. nov 1906)",
+        "Kjell Werner (f. 19. apr 1909, d. 1980) — leder Werners Magasin 1955–80",
+        "Elisabeth Werner (f. 6. aug 1910) — Simens mormor (Sigrid Elisabeth)"
+      ]
+    },
+    {
+      "id": "sigrid_w",
+      "ahnentafel": 15,
+      "name": "Sigrid Werner",
+      "maiden": "Olsen",
+      "gender": "f",
+      "born": "12. mai 1876",
+      "place": "Drammen",
+      "notes": [
+        "Far: Carl Johan August Olsen (fuldmægtig, Grønland, Drammen).",
+        "Mor: Hilda Lorentse Larsen, Grønland, Drammen."
+      ],
+      "fatherId": "carl_olsen",
+      "motherId": "hilda_larsen",
+      "spouseId": "ferdinand"
+    },
+    {
+      "id": "ole_torrissen",
+      "ahnentafel": 16,
+      "name": "Ole Tørrissen Hustad",
+      "gender": "m",
+      "born": "1830",
+      "died": "1852",
+      "place": "Hustad, Inderøy",
+      "ghost": true,
+      "notes": [
+        "Sønn av en Tørris (derav patronymet Tørrissen).",
+        "Giftet seg med Anna Lovisa Lorentzdatter fra Krogshuus.",
+        "Døde 22 år gammel, kun 3 år etter sønnens fødsel."
+      ],
+      "spouseId": "anna_lovisa"
+    },
+    {
+      "id": "anna_lovisa",
+      "ahnentafel": 17,
+      "name": "Anna Lovisa Lorentzdatter",
+      "gender": "f",
+      "born": "22. mar 1821",
+      "place": "Krogshuus → Hustad",
+      "ghost": true,
+      "notes": [
+        "Døpt 31. mai 1821, Inderøy.",
+        "Far: Lorentz Aagesen. Mor: Johanna Larsdatter, Krogshuus.",
+        "Ble enke i 1852 da Ole Tørrissen døde — trolig 31 år gammel."
+      ],
+      "sources": [
+        { "label": "Fødte og døpte 1821, Inderøy", "sourceId": "pd00000041360861" }
+      ],
+      "spouseId": "ole_torrissen"
+    },
+    {
+      "id": "sivert_bragstad",
+      "ahnentafel": 18,
+      "name": "Sivert Pedersen Bragstad",
+      "gender": "m",
+      "born": "ca. 1816",
+      "place": "Bragstad, Inderøy",
+      "ghost": true,
+      "notes": [
+        "Far: Peder Sivertsen Bragstad.",
+        "Alder ved vielse: 32 år (beregnet f. 1816).",
+        "Giftet seg med Margrethe Christiansdatter Volan fra Berg i Mosaegen."
+      ],
+      "sources": [
+        { "label": "Vielse, Inderøy", "sourceId": "pv00000008831226" }
+      ],
+      "spouseId": "margrethe_volan"
+    },
+    {
+      "id": "margrethe_volan",
+      "ahnentafel": 19,
+      "name": "Margrethe Christiansdatter Volan",
+      "gender": "f",
+      "born": "ca. 1829",
+      "place": "Berg i Mosaegen",
+      "ghost": true,
+      "notes": [
+        "Far: Kristian Pedersen Volan.",
+        "Fødested: Berg i Mosaegen, Inderøy."
+      ],
+      "sources": [
+        { "label": "Vielse, Inderøy", "sourceId": "pv00000008831226" }
+      ],
+      "spouseId": "sivert_bragstad"
+    },
+    {
+      "id": "carl_a_husberg",
+      "ahnentafel": 20,
+      "name": "Carl A. Husberg",
+      "gender": "m",
+      "born": "ca. 1829",
+      "place": "Tune prestegjeld",
+      "occupation": "Handelsborger, Sarpsborg",
+      "notes": [
+        "Handelsborger (kjøbmann) i Sarpsborg.",
+        "Fødested bekreftet: Tune prestegjeld (1865-tellingen, alder 36).",
+        "Bosted 1865: St. Mariæ Gaden, Sarpsborg.",
+        "Barn: Anna Wilhelmine (f. ca. 1863), Carl Amandus (f. 1865), Ludvig (f. 27. jun 1869), Marthe Fredrikke (g.m. Pharo 1898)."
+      ],
+      "spouseId": "anne_m_lowum"
+    },
+    {
+      "id": "anne_m_lowum",
+      "ahnentafel": 21,
+      "name": "Anne Margrethe Lowum",
+      "gender": "f",
+      "born": "ca. 1837",
+      "place": "Borge prestegjeld",
+      "spouseId": "carl_a_husberg"
+    },
+    {
+      "id": "jens_hagen",
+      "ahnentafel": 22,
+      "name": "Jens Andersen Hagen",
+      "gender": "m",
+      "born": "20. okt 1832",
+      "died": "21. feb 1906",
+      "place": "Haga, Romedal → Kristiania",
+      "occupation": "Garvermester · Stortingsrepresentant 1886",
+      "notes": [
+        "Foreldre: bonde Anders Hagen og Anne Marie Hagen, Haga, Romedal.",
+        "Garvermester og gaardeier. Garveri i Kristiania fra 1858, mursteinfabrikk fra 1895.",
+        "Bystyrerepresentant Kristiania 1885–1894. Stortingsrepresentant 1886 (Høyre).",
+        "Gift med Christiana A. Hagen (f. 1833, Vaaler Soløer).",
+        "Datter Agnethe Jensine (f. 1872) giftet seg med overretssagfører Karl Amandus Husberg."
+      ],
+      "spouseId": "christiana_hagen",
+      "children": [
+        "Hagbart Adolf Hagen (f. 1858)",
+        "Anna Berthea Hagen (f. 1859)",
+        "Assa Margrethe Hagen (f. 1860)",
+        "Jens Hjalmar Hagen (f. 1861)",
+        "Martha Marie Hagen (f. 1862)",
+        "Christine Hagen (f. 1867)",
+        "Agnethe Jensine Hagen (f. 1872) — gift Karl Amandus Husberg",
+        "Elise Dagmar Hagen (f. 1875)"
+      ]
+    },
+    {
+      "id": "christiana_hagen",
+      "ahnentafel": 23,
+      "name": "Christiana A. Hagen",
+      "gender": "f",
+      "born": "1833",
+      "place": "Vaaler Soløer",
+      "spouseId": "jens_hagen"
+    },
+    {
+      "id": "simen_ellefsen",
+      "ahnentafel": 24,
+      "name": "Simen Ellefsen",
+      "gender": "m",
+      "born": "1824",
+      "place": "Eker",
+      "notes": [
+        "Sønnens etternavn «Simensen» er avledet av hans fornavn Simen."
+      ],
+      "spouseId": "karoline_t"
+    },
+    {
+      "id": "karoline_t",
+      "ahnentafel": 25,
+      "name": "Karoline Torgersdatter",
+      "gender": "f",
+      "ghost": true,
+      "spouseId": "simen_ellefsen"
+    },
+    {
+      "id": "nils_skar",
+      "ahnentafel": 26,
+      "name": "Nils Jacobsen Skar",
+      "gender": "m",
+      "born": "1831",
+      "place": "Eker",
+      "spouseId": "kari_skar"
+    },
+    {
+      "id": "kari_skar",
+      "ahnentafel": 27,
+      "name": "Kari Skar",
+      "gender": "f",
+      "born": "1836",
+      "place": "Eker",
+      "spouseId": "nils_skar"
+    },
+    {
+      "id": "eduard_werner",
+      "ahnentafel": 28,
+      "name": "Eduard Werner",
+      "gender": "m",
+      "born": "1851",
+      "died": "1923",
+      "place": "Drammen",
+      "occupation": "Grunnlegger Werners Magasin 1875",
+      "notes": [
+        "Kobber- og blikkenslager. Grunnla Werners Magasin, Drammen, 1875.",
+        "Butikk: Tollbodgaten 4 fra 1900. Ca. 50 ansatte på slutten av 1930-tallet.",
+        "Virksomhet: signalamper til NSB, lanterner til marinen, glass, steintøy, porselen.",
+        "Kalt «Eduard Nilsson Werner» — far trolig en Nils."
+      ],
+      "spouseId": "karen_werner"
+    },
+    {
+      "id": "karen_werner",
+      "ahnentafel": 29,
+      "name": "Karen Werner",
+      "gender": "f",
+      "ghost": true,
+      "notes": ["Etternavn og opphav ukjent."],
+      "spouseId": "eduard_werner"
+    },
+    {
+      "id": "carl_olsen",
+      "ahnentafel": 30,
+      "name": "Carl Johan August Olsen",
+      "gender": "m",
+      "place": "Grønland, Drammen",
+      "occupation": "Fuldmægtig",
+      "spouseId": "hilda_larsen"
+    },
+    {
+      "id": "hilda_larsen",
+      "ahnentafel": 31,
+      "name": "Hilda Lorentse Larsen",
+      "gender": "f",
+      "place": "Grønland, Drammen",
+      "spouseId": "carl_olsen"
+    }
+  ]
+}
