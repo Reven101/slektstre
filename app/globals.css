@@ -46,13 +46,13 @@ body::after {
   background: radial-gradient(ellipse at center, transparent 60%, rgba(24,10,5,.08) 100%);
 }
 
-/* ── HEADER — dark mahogany ── */
+/* ── HEADER — muted parchment ── */
 .site-header {
-  background: #2A1E10;
-  color: #F2E6C8;
+  background: var(--bg);
+  color: var(--ink);
   text-align: center;
   padding: 44px 24px 40px;
-  border-bottom: 3px solid #1A1008;
+  border-bottom: 1.5px solid var(--line);
 }
 
 .eyebrow {
@@ -61,7 +61,7 @@ body::after {
   font-weight: 600;
   letter-spacing: .55em;
   text-transform: uppercase;
-  color: rgba(242,230,200,.55);
+  color: rgba(24,10,5,.45);
   margin-bottom: 12px;
   display: block;
 }
@@ -71,7 +71,7 @@ body::after {
   font-size: clamp(3.2rem, 9vw, 7rem);
   font-weight: 900;
   font-style: italic;
-  color: #F2E6C8;
+  color: var(--ink);
   letter-spacing: .02em;
   line-height: 1;
   margin-bottom: 18px;
@@ -83,7 +83,7 @@ body::after {
   font-weight: 300;
   letter-spacing: .3em;
   text-transform: uppercase;
-  color: rgba(242,230,200,.6);
+  color: rgba(24,10,5,.45);
 }
 
 .stat-bar {
@@ -92,7 +92,7 @@ body::after {
   gap: 36px;
   margin-top: 24px;
   flex-wrap: wrap;
-  border-top: 1px solid rgba(242,230,200,.18);
+  border-top: 1px solid rgba(24,10,5,.12);
   padding-top: 20px;
 }
 .stat-item { text-align: center; }
@@ -100,7 +100,7 @@ body::after {
   font-family: 'Cormorant Garamond', serif;
   font-size: 2rem;
   font-weight: 700;
-  color: var(--gold-l);
+  color: var(--gold);
   display: block;
   line-height: 1;
 }
@@ -110,7 +110,7 @@ body::after {
   font-weight: 600;
   letter-spacing: .2em;
   text-transform: uppercase;
-  color: rgba(242,230,200,.45);
+  color: rgba(24,10,5,.4);
   display: block;
   margin-top: 3px;
 }

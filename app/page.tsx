@@ -62,7 +62,7 @@ export default function Home() {
             </div>
           </div>
           <div className="info-card warn">
-            <div className="info-card-title">Tormod K. Hustad — historisk kontekst</div>
+            <div className="info-card-title">Tormod Kristoffer Hustad — historisk kontekst</div>
             <div className="info-card-body">
               NS-statsråd 1940–44. Dømt for landssvik etter krigen.<br />
               Arkitekt, NTH 1914. Vant designkonkurransen om NTH-ringen.<br />

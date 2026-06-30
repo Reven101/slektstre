@@ -23,8 +23,7 @@
     {
       "id": "hilde",
       "ahnentafel": 3,
-      "name": "Hilde Hustad",
-      "maiden": "Simensen",
+      "name": "Hilde Simensen",
       "gender": "f",
       "born": "28. apr 1934",
       "died": "29. sep 2018",
@@ -48,19 +47,28 @@
       "fatherId": "torris",
       "motherId": "karoline_b",
       "spouseId": "anne_h",
-      "marriedDate": "30. april 1921"
+      "marriedDate": "30. april 1921",
+      "children": [
+        "Tom Hustad (f. 4. des 1921, d. 31. okt 2005) — Simens far",
+        "Anne Margrethe Hustad (f. 1923, g.m. Aakhus)",
+        "Otte Hustad (f. 1927, d. 1991)",
+        "Karl Wilhelm Hustad (f. 1929, d. 2012)",
+        "Helge Hustad (f. 1938, d. 2021)",
+        "Lars Hustad (f. ca. 1941)",
+        "Halvor Hustad (f. 1943)",
+        "Elin Hustad (g.m. Page)"
+      ]
     },
     {
       "id": "anne_h",
       "ahnentafel": 5,
-      "name": "Anne Margrethe Hustad",
-      "maiden": "Husberg",
+      "name": "Anne Margrethe Husberg",
       "gender": "f",
       "born": "20. mar 1901",
       "died": "10. jan 1995",
       "notes": [
         "Levde til Simen var 25 år gammel.",
-        "Gift 30. april 1921 med Tormod K. Hustad.",
+        "Gift 30. april 1921 med Tormod Kristoffer Hustad.",
         "Far: Carl Husberg (overretssagfører, Oslo)."
       ],
       "fatherId": "carl_husberg",
@@ -82,19 +90,22 @@
         "Sakfører fra 1929. Kompanjong Sigbjørn Mustad, Gjøvik 1932.",
         "Bosted Gjøvik: Trondhjemsvegen 61. Siden tilbake til Oslo.",
         "Gift 1933 med Sigrid Elisabeth Werner (1910–1997).",
-        "Barn: to døtre og én sønn (1934–1942). Hilde (f. 1934) er Simens mor.",
         "Gravlagt: Ris kirkegård (urnelund), Oslo."
       ],
       "fatherId": "christian_julius",
       "motherId": "inga",
       "spouseId": "sigrid_s",
-      "marriedYear": "1933"
+      "marriedYear": "1933",
+      "children": [
+        "Hilde Simensen (f. 28. apr 1934, d. 29. sep 2018) — Simens mor",
+        "Bente Simensen (f. 1938, g.m. Bendixen)",
+        "Christian Julius Simensen (f. 1942, d. 2025)"
+      ]
     },
     {
       "id": "sigrid_s",
       "ahnentafel": 7,
-      "name": "Sigrid E. Simensen",
-      "maiden": "Werner",
+      "name": "Sigrid Elisabeth Werner",
       "gender": "f",
       "born": "6. aug 1910",
       "died": "1997",
@@ -102,7 +113,7 @@
       "notes": [
         "Registrert som «Elisabeth» i 1910-tellingen.",
         "Gift 1933 med Erling Simensen (1905–1987).",
-        "Far: Ferdinand Werner (1876–1948). Mor: Sigrid f. Olsen (f. 1876, Drammen)."
+        "Far: Ferdinand Werner (1876–1948). Mor: Sigrid Olsen (f. 12. mai 1876, Drammen)."
       ],
       "fatherId": "ferdinand",
       "motherId": "sigrid_w",
@@ -145,8 +156,7 @@
     {
       "id": "karoline_b",
       "ahnentafel": 9,
-      "name": "Karoline Emilie Hustad",
-      "maiden": "Sivertsdatter Bragstad",
+      "name": "Karoline Emilie Bragstad",
       "gender": "f",
       "born": "1850",
       "place": "Bragstad, Inderøy",
@@ -208,7 +218,7 @@
       "notes": [
         "Far: Simen Ellefsen (f. 1824, Eker) — derav etternavnet «Simensen».",
         "Mor: Karoline Torgersdatter.",
-        "Gift med Inga Pauline Sofie f. Skar (1871–1906).",
+        "Gift med Inga Pauline Sofie Skar (1871–1906).",
         "Inga: datter av Nils Jacobsen Skar (f. 1831, Eker) og Kari Skar (f. 1836, Eker).",
         "9 barn (1889–ca. 1906). Inga døde da Erling var knapt 1 år gammel."
       ],
@@ -230,8 +240,7 @@
     {
       "id": "inga",
       "ahnentafel": 13,
-      "name": "Inga Pauline Sofie Simensen",
-      "maiden": "Skar",
+      "name": "Inga Pauline Sofie Skar",
       "gender": "f",
       "born": "1871",
       "died": "1906",
@@ -255,7 +264,7 @@
       "notes": [
         "Kontorchef i Glasmagasin (1910-tellingen). Leder Werners Magasin etter 1923.",
         "Far: Eduard Werner (1851–1923). Mor: Karen (ukjent etternavn).",
-        "Gift med Sigrid f. Olsen (f. 12. mai 1876, Drammen).",
+        "Gift med Sigrid Olsen (f. 12. mai 1876, Drammen).",
         "Sigrids far: Carl Johan August Olsen (fuldmægtig, Grønland, Drammen). Sigrids mor: Hilda Lorentse Larsen."
       ],
       "fatherId": "eduard_werner",
@@ -268,14 +277,13 @@
         "Aase Werner (f. 24. jan 1905)",
         "Ferdinand Wilh. Aug. Werner (f. 12. nov 1906)",
         "Kjell Werner (f. 19. apr 1909, d. 1980) — leder Werners Magasin 1955–80",
-        "Elisabeth Werner (f. 6. aug 1910) — Simens mormor (Sigrid Elisabeth)"
+        "Sigrid Elisabeth Werner (f. 6. aug 1910) — Simens mormor"
       ]
     },
     {
       "id": "sigrid_w",
       "ahnentafel": 15,
-      "name": "Sigrid Werner",
-      "maiden": "Olsen",
+      "name": "Sigrid Olsen",
       "gender": "f",
       "born": "12. mai 1876",
       "place": "Drammen",
