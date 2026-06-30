@@ -46,13 +46,13 @@ body::after {
   background: radial-gradient(ellipse at center, transparent 60%, rgba(24,10,5,.08) 100%);
 }
 
-/* ── HEADER — deep crimson block ── */
+/* ── HEADER — dark mahogany ── */
 .site-header {
-  background: var(--crimson);
+  background: #2A1E10;
   color: #F2E6C8;
   text-align: center;
   padding: 44px 24px 40px;
-  border-bottom: 3px solid #6A0E1A;
+  border-bottom: 3px solid #1A1008;
 }
 
 .eyebrow {

@@ -118,15 +118,34 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
               </div>
             </div>
 
-            {/* Connector 6→5 */}
-            <div className="connector" style={{ height: 40 }}>
-              {[6.25, 18.75, 31.25, 43.75, 56.25, 68.75, 81.25, 93.75].map((l, i) =>
-                conn({ top: 0, left: `${l}%`, width: '1.5px', height: 20 }, `t${i}`)
+            {/* Connector 6→5: two-level Y-shapes */}
+            <div className="connector" style={{ height: 70 }}>
+              {/* L1: vertical from each individual card center */}
+              {([2.95,9.13,15.52,21.70,28.07,34.25,40.64,46.82,53.19,59.37,65.75,71.94,78.31,84.49,90.87,97.06] as number[]).map((l, i) =>
+                conn({ top: 0, left: `${l}%`, width: '1.5px', height: 20 }, `c${i}`)
               )}
-              {[12.5, 37.5, 62.5, 87.5].map((c, i) => ([
-                conn({ top: 19, left: `${c - 6.25}%`, right: `${100 - c - 6.25}%`, height: '1.5px' }, `h${i}`),
-                conn({ top: 20, left: `${c}%`, width: '1.5px', height: 20 }, `v${i}`),
-              ]))}
+              {/* L1: within-couple horizontals */}
+              {conn({ top: 19, left: '2.95%',  right: '90.87%', height: '1.5px' }, 'ch0')}
+              {conn({ top: 19, left: '15.52%', right: '78.30%', height: '1.5px' }, 'ch1')}
+              {conn({ top: 19, left: '28.07%', right: '65.75%', height: '1.5px' }, 'ch2')}
+              {conn({ top: 19, left: '40.64%', right: '53.18%', height: '1.5px' }, 'ch3')}
+              {conn({ top: 19, left: '53.19%', right: '40.63%', height: '1.5px' }, 'ch4')}
+              {conn({ top: 19, left: '65.75%', right: '28.06%', height: '1.5px' }, 'ch5')}
+              {conn({ top: 19, left: '78.31%', right: '15.51%', height: '1.5px' }, 'ch6')}
+              {conn({ top: 19, left: '90.87%', right: '2.94%',  height: '1.5px' }, 'ch7')}
+              {/* L1→L2: gen-side center stems */}
+              {([6.04,18.60,31.16,43.72,56.28,68.84,81.40,93.96] as number[]).map((l, i) =>
+                conn({ top: 19, left: `${l}%`, width: '1.5px', height: 22 }, `gs${i}`)
+              )}
+              {/* L2: group-pair horizontals */}
+              {conn({ top: 40, left: '6.04%',  right: '81.40%', height: '1.5px' }, 'gh0')}
+              {conn({ top: 40, left: '31.16%', right: '56.28%', height: '1.5px' }, 'gh1')}
+              {conn({ top: 40, left: '56.28%', right: '31.16%', height: '1.5px' }, 'gh2')}
+              {conn({ top: 40, left: '81.40%', right: '6.04%',  height: '1.5px' }, 'gh3')}
+              {/* L2→gen5: stems down to oldeforeldre */}
+              {([12.32,37.44,62.56,87.68] as number[]).map((l, i) =>
+                conn({ top: 40, left: `${l}%`, width: '1.5px', height: 30 }, `s${i}`)
+              )}
             </div>
 
             {/* GEN 5 — Oldeforeldre */}
