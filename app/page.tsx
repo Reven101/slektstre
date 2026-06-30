@@ -61,12 +61,12 @@ export default function Home() {
               Drevet av familien i fire generasjoner til 1980.
             </div>
           </div>
-          <div className="info-card warn">
-            <div className="info-card-title">Tormod Kristoffer Hustad — historisk kontekst</div>
+          <div className="info-card">
+            <div className="info-card-title">Simensen-brødrene, byggmestre i Oslo</div>
             <div className="info-card-body">
-              NS-statsråd 1940–44. Dømt for landssvik etter krigen.<br />
-              Arkitekt, NTH 1914. Vant designkonkurransen om NTH-ringen.<br />
-              Historien er en del av familiens fulle bilde.
+              Sønner av murmester Christian Julius Simensen (1858–1927) og onkler til Hilde Simensen.<br />
+              Haakon (f. 1894), Harald (f. 1895) og Arne Simensen (f. 1899) var store byggmestre i Oslo.<br />
+              <em>Utfyllende informasjon kommer.</em>
             </div>
           </div>
         </div>
