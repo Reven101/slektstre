@@ -213,7 +213,7 @@ body::after {
 .p-card {
   background: var(--card);
   border: 1.5px solid var(--line);
-  border-top: 3px solid var(--line-2);
+  border-top: 3px solid var(--crimson);
   border-radius: var(--radius);
   padding: 12px 13px 14px;
   text-align: left;
@@ -278,6 +278,7 @@ body::after {
 .p-name {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 700;
+  font-style: italic;
   font-size: 1.05rem;
   line-height: 1.18;
   color: var(--ink);
