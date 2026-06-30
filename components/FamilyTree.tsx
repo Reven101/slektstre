@@ -208,7 +208,7 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
 
             {/* GEN 1 — Far og søsken */}
             <div className="gen">
-              <div className="gen-label">Far og søsken</div>
+              <div className="gen-label">Din kjære far og hans søsken</div>
               <div style={{ display: 'flex', justifyContent: 'center', gap: 8 }}>
                 {(['ketil', 'pal', 'bente_m'] as const).map(id => {
                   const p = persons.find(x => x.id === id)
@@ -225,7 +225,7 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
         {/* ── MOBILE TREE ── */}
         <div className="tree-mobile">
           <div className="gen-section">
-            <div className="gen-label-m">Far og søsken</div>
+            <div className="gen-label-m">Din kjære far og hans søsken</div>
             <div className="gen-cards-row">
               {(['ketil', 'pal', 'bente_m'] as const).map(id => {
                 const p = persons.find(x => x.id === id)
