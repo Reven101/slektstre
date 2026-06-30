@@ -270,7 +270,7 @@
       "occupation": "Leder Werners Magasin",
       "notes": [
         "Kontorchef i Glasmagasin (1910-tellingen). Leder Werners Magasin etter 1923.",
-        "Far: Eduard Werner (1851–1923). Mor: Karen (ukjent etternavn).",
+        "Far: Eduard Werner (1851–1923), f. Edvard Martin Vernes. Mor: Karen Martinusdatter (f. 21. jul 1845, Sande).",
         "Gift med Sigrid Olsen (f. 12. mai 1876, Drammen).",
         "Sigrids far: Carl Johan August Olsen (fuldmægtig, Grønland, Drammen). Sigrids mor: Hilda Lorentse Larsen."
       ],
@@ -488,17 +488,18 @@
         "Kobber- og blikkenslager. Grunnla Werners Magasin, Drammen, 1875.",
         "Butikk: Tollbodgaten 4 fra 1900. Ca. 50 ansatte på slutten av 1930-tallet.",
         "Virksomhet: signalamper til NSB, lanterner til marinen, glass, steintøy, porselen.",
-        "Kalt «Eduard Nilsson Werner» — far trolig en Nils."
+        "Egentlig Edvard Martin Vernes — Vernes-navnet ble gradvis til Werner. Far: Johan Andreas Ferdinand Usanas."
       ],
       "spouseId": "karen_werner"
     },
     {
       "id": "karen_werner",
       "ahnentafel": 29,
-      "name": "Karen Werner",
+      "name": "Karen Martinusdatter",
       "gender": "f",
-      "born": "1849",
-      "notes": ["Pikenavn ukjent. Gift med Eduard Werner ca. 1875, Drammen."],
+      "born": "21. jul 1845",
+      "place": "Sande",
+      "notes": ["Far: Martin Larsen. Gift med Edvard Martin Vernes — etternavnet Vernes ble gradvis til Werner."],
       "spouseId": "eduard_werner"
     },
     {
