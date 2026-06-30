@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <header className="site-header">
         <span className="eyebrow">Slektstre</span>
-        <h1>Simen Hustad</h1>
+        <h1>Halvparten av deg</h1>
         <p className="subtitle">
           Hustad&nbsp;·&nbsp;Husberg&nbsp;·&nbsp;Simensen&nbsp;·&nbsp;Werner
         </p>
@@ -59,14 +59,6 @@ export default function Home() {
               Tollbodgaten 4 — ca. 50 ansatte på 1930-tallet.<br />
               Signalamper til NSB, lanterner til marinen, glass og keramikk.<br />
               Drevet av familien i fire generasjoner til 1980.
-            </div>
-          </div>
-          <div className="info-card">
-            <div className="info-card-title">Simensen-brødrene, byggmestre i Oslo</div>
-            <div className="info-card-body">
-              Sønner av murmester Christian Julius Simensen (1858–1927) og onkler til Hilde Simensen.<br />
-              Haakon (f. 1894), Harald (f. 1895) og Arne Simensen (f. 1899) var store byggmestre i Oslo.<br />
-              <em>Utfyllende informasjon kommer.</em>
             </div>
           </div>
         </div>

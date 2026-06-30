@@ -206,10 +206,17 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
               {conn({ top: 15, left: '50%', width: '1.5px', height: 17 })}
             </div>
 
-            {/* GEN 1 — Proband */}
+            {/* GEN 1 — Proband og søsken */}
             <div className="gen">
-              <div className="gen-label">Deg selv</div>
-              <div className="gen-center">{card(1)}</div>
+              <div className="gen-label">Deg selv og søsken</div>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: 8 }}>
+                {(['ketil', 'pal', 'bente_m'] as const).map(id => {
+                  const p = persons.find(x => x.id === id)
+                  if (!p) return null
+                  return <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Søster' : 'Bror'} onClick={setSelected} searchState={searchState(p)} />
+                })}
+                {card(1)}
+              </div>
             </div>
 
           </div>
@@ -218,8 +225,13 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
         {/* ── MOBILE TREE ── */}
         <div className="tree-mobile">
           <div className="gen-section">
-            <div className="gen-label-m">Deg selv</div>
-            <div className="gen-cards-row" style={{ gridTemplateColumns: '1fr' }}>
+            <div className="gen-label-m">Deg selv og søsken</div>
+            <div className="gen-cards-row">
+              {(['ketil', 'pal', 'bente_m'] as const).map(id => {
+                const p = persons.find(x => x.id === id)
+                if (!p) return null
+                return <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Søster' : 'Bror'} onClick={setSelected} searchState={searchState(p)} />
+              })}
               {card(1)}
             </div>
           </div>

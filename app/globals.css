@@ -48,7 +48,7 @@ body::after {
 
 /* ── HEADER — muted parchment ── */
 .site-header {
-  background: var(--bg-2);
+  background: var(--line);
   color: var(--ink);
   text-align: center;
   padding: 44px 24px 40px;
@@ -251,7 +251,7 @@ body::after {
   background: var(--card);
 }
 .p-card.ghost:hover { transform: none; box-shadow: none; }
-.p-card.ghost .p-name { color: var(--ink-3); font-style: italic; }
+.p-card.ghost .p-name { color: var(--ink); }
 
 .p-card.match {
   border-top-color: var(--crimson) !important;

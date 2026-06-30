@@ -18,7 +18,13 @@
       "born": "4. des 1921",
       "died": "31. okt 2005",
       "fatherId": "tormod",
-      "motherId": "anne_h"
+      "motherId": "anne_h",
+      "children": [
+        "Ketil Hustad (f. 25. jul 1959)",
+        "Pål Hustad (f. 13. feb 1961)",
+        "Bente-Margrethe Hustad (f. 11. nov 1963, g.m. Ohnstad)",
+        "Simen Hustad (f. 1969) — Proband"
+      ]
     },
     {
       "id": "hilde",
@@ -510,6 +516,30 @@
       "gender": "f",
       "place": "Grønland, Drammen",
       "spouseId": "carl_olsen"
+    },
+    {
+      "id": "ketil",
+      "name": "Ketil Hustad",
+      "gender": "m",
+      "born": "25. jul 1959",
+      "fatherId": "tom",
+      "motherId": "hilde"
+    },
+    {
+      "id": "pal",
+      "name": "Pål Hustad",
+      "gender": "m",
+      "born": "13. feb 1961",
+      "fatherId": "tom",
+      "motherId": "hilde"
+    },
+    {
+      "id": "bente_m",
+      "name": "Bente-Margrethe Hustad",
+      "gender": "f",
+      "born": "11. nov 1963",
+      "fatherId": "tom",
+      "motherId": "hilde"
     }
   ]
 }
