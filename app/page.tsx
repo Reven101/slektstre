@@ -5,6 +5,14 @@ import { FamilyData } from '@/components/types'
 export default function Home() {
   const data = familyData as FamilyData
 
+  const knownPersons = data.persons.filter(p => !p.ghost)
+  const years = knownPersons
+    .flatMap(p => [p.born, p.died])
+    .filter(Boolean)
+    .map(s => parseInt(s!.slice(-4)))
+    .filter(n => !isNaN(n))
+  const yearSpan = years.length > 0 ? Math.max(...years) - Math.min(...years) : 0
+
   return (
     <>
       <header className="site-header">
@@ -13,6 +21,20 @@ export default function Home() {
         <p className="subtitle">
           Hustad&nbsp;·&nbsp;Husberg&nbsp;·&nbsp;Simensen&nbsp;·&nbsp;Werner
         </p>
+        <div className="stat-bar">
+          <div className="stat-item">
+            <span className="stat-num">{knownPersons.length}</span>
+            <span className="stat-label">Personer</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-num">6</span>
+            <span className="stat-label">Generasjoner</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-num">{yearSpan}</span>
+            <span className="stat-label">År historikk</span>
+          </div>
+        </div>
       </header>
 
       <FamilyTree data={data} />

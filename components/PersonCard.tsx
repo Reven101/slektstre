@@ -6,12 +6,16 @@ interface PersonCardProps {
   person: Person
   role: string
   onClick: (person: Person) => void
+  searchState?: 'match' | 'dimmed' | ''
 }
 
-export default function PersonCard({ person, role, onClick }: PersonCardProps) {
-  const cls = ['p-card', person.highlight ?? '', person.ghost ? 'ghost' : '']
-    .filter(Boolean)
-    .join(' ')
+export default function PersonCard({ person, role, onClick, searchState = '' }: PersonCardProps) {
+  const cls = [
+    'p-card',
+    person.highlight ?? '',
+    person.ghost ? 'ghost' : '',
+    searchState,
+  ].filter(Boolean).join(' ')
 
   const dates = [person.born, person.died].filter(Boolean).join(' – ')
 
@@ -29,10 +33,10 @@ export default function PersonCard({ person, role, onClick }: PersonCardProps) {
       {person.maiden && <div className="p-maiden">f. {person.maiden}</div>}
       {dates && <div className="p-dates">{dates}</div>}
       {person.place && <div className="p-place">{person.place}</div>}
-      {person.occupation && person.highlight === 'warn' && (
+      {person.highlight === 'warn' && person.occupation && (
         <span className="p-tag">{person.occupation}</span>
       )}
-      {person.occupation && !person.highlight && (
+      {!person.highlight && person.occupation && (
         <div className="p-occ">{person.occupation}</div>
       )}
       {person.highlight === 'me' && (

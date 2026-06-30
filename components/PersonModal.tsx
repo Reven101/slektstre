@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Person } from './types'
 
 interface PersonModalProps {
@@ -13,17 +13,33 @@ interface PersonModalProps {
 const DA_BASE = 'https://www.digitalarkivet.no/en/view/8/'
 
 export default function PersonModal({ person, allPersons, onClose, onNavigate }: PersonModalProps) {
-  const byId = (id?: string) => allPersons.find(p => p.id === id)
-  const father = byId(person.fatherId)
-  const mother  = byId(person.motherId)
-  const spouse  = byId(person.spouseId)
+  const [transitioning, setTransitioning] = useState(false)
+  const [current, setCurrent] = useState(person)
 
-  const dates   = [person.born, person.died].filter(Boolean).join(' – ')
-  const married = person.marriedDate
-    ? `Gift ${person.marriedDate}`
-    : person.marriedYear
-    ? `Gift ${person.marriedYear}`
+  const byId = (id?: string) => allPersons.find(p => p.id === id)
+  const father = byId(current.fatherId)
+  const mother  = byId(current.motherId)
+  const spouse  = byId(current.spouseId)
+
+  const dates   = [current.born, current.died].filter(Boolean).join(' – ')
+  const married = current.marriedDate
+    ? `Gift ${current.marriedDate}`
+    : current.marriedYear
+    ? `Gift ${current.marriedYear}`
     : null
+
+  const navigate = (p: Person) => {
+    setTransitioning(true)
+    setTimeout(() => {
+      setCurrent(p)
+      onNavigate(p)
+      setTransitioning(false)
+    }, 140)
+  }
+
+  useEffect(() => {
+    setCurrent(person)
+  }, [person])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
@@ -41,31 +57,26 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
       onClick={onClose}
       role="dialog"
       aria-modal="true"
-      aria-label={`Informasjon om ${person.name}`}
+      aria-label={`Informasjon om ${current.name}`}
     >
-      <div className="modal-panel" onClick={e => e.stopPropagation()}>
-
-        {/* pull indicator — mobile only */}
+      <div
+        className={`modal-panel${transitioning ? ' transitioning' : ''}`}
+        onClick={e => e.stopPropagation()}
+      >
         <div className="modal-pull" aria-hidden="true" />
 
-        {/* ── HEADER ── */}
+        {/* HEADER */}
         <div className="modal-header">
           <div>
-            <div className="modal-title">{person.name}</div>
-            {person.maiden && (
-              <div className="modal-maiden">f. {person.maiden}</div>
+            <div className="modal-title">{current.name}</div>
+            {current.maiden && (
+              <div className="modal-maiden">f. {current.maiden}</div>
             )}
           </div>
-          <button
-            className="modal-close"
-            onClick={onClose}
-            aria-label="Lukk"
-          >
-            ✕
-          </button>
+          <button className="modal-close" onClick={onClose} aria-label="Lukk">✕</button>
         </div>
 
-        {/* ── META GRID ── */}
+        {/* META */}
         <div className="modal-meta">
           {dates && (
             <div>
@@ -73,16 +84,16 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
               <div className="modal-meta-value gold">{dates}</div>
             </div>
           )}
-          {person.place && (
+          {current.place && (
             <div>
               <div className="modal-meta-label">Sted</div>
-              <div className="modal-meta-value">{person.place}</div>
+              <div className="modal-meta-value">{current.place}</div>
             </div>
           )}
-          {person.occupation && (
+          {current.occupation && (
             <div>
               <div className="modal-meta-label">Yrke / tittel</div>
-              <div className="modal-meta-value">{person.occupation}</div>
+              <div className="modal-meta-value">{current.occupation}</div>
             </div>
           )}
           {spouse && (
@@ -90,29 +101,29 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
               <div className="modal-meta-label">Ektefelle</div>
               <div className="modal-meta-value">
                 <span
-                  onClick={() => onNavigate(spouse)}
+                  onClick={() => navigate(spouse)}
                   style={{ cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '3px' }}
                 >
                   {spouse.name}
                 </span>
-                {married ? <><br /><span style={{ fontSize: '.8rem', opacity: .7 }}>{married}</span></> : null}
+                {married && <><br /><span style={{ fontSize: '.82rem', opacity: .7 }}>{married}</span></>}
               </div>
             </div>
           )}
         </div>
 
-        {/* ── FORELDRE ── */}
+        {/* FORELDRE */}
         {(father || mother) && (
           <div className="modal-section">
             <div className="modal-section-title">Foreldre</div>
             <div className="modal-chips">
               {father && (
-                <div className="modal-chip" onClick={() => onNavigate(father)}>
+                <div className="modal-chip" onClick={() => navigate(father)}>
                   Far:&nbsp;{father.name}{father.born ? ` · f. ${father.born}` : ''}
                 </div>
               )}
               {mother && (
-                <div className="modal-chip" onClick={() => onNavigate(mother)}>
+                <div className="modal-chip" onClick={() => navigate(mother)}>
                   Mor:&nbsp;{mother.name}{mother.born ? ` · f. ${mother.born}` : ''}
                 </div>
               )}
@@ -120,53 +131,48 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
           </div>
         )}
 
-        {/* ── BIOGRAFI ── */}
-        {person.notes && person.notes.length > 0 && (
+        {/* BIOGRAFI */}
+        {current.notes && current.notes.length > 0 && (
           <div className="modal-section modal-notes">
             <div className="modal-section-title">
-              Om {person.name.split(' ')[0]}
+              Om {current.name.split(' ')[0]}
             </div>
-            {person.notes.map((note, i) => (
+            {current.notes.map((note, i) => (
               <p key={i}>{note}</p>
             ))}
           </div>
         )}
 
-        {/* ── BARN ── */}
-        {person.children && person.children.length > 0 && (
+        {/* BARN */}
+        {current.children && current.children.length > 0 && (
           <div className="modal-section">
             <div className="modal-section-title">Barn</div>
             <div className="modal-chips">
-              {person.children.map((child, i) => (
+              {current.children.map((child, i) => (
                 <div key={i} className="modal-chip static">{child}</div>
               ))}
             </div>
           </div>
         )}
 
-        {/* ── KILDER ── */}
-        {person.sources && person.sources.length > 0 && (
+        {/* KILDER */}
+        {current.sources && current.sources.length > 0 && (
           <div className="modal-sources">
             <strong>Kilder:&nbsp;</strong>
-            {person.sources.map((src, i) => (
+            {current.sources.map((src, i) => (
               <span key={i}>
                 {src.sourceId ? (
-                  <a
-                    href={`${DA_BASE}${src.sourceId}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href={`${DA_BASE}${src.sourceId}`} target="_blank" rel="noopener noreferrer">
                     {src.label}
                   </a>
                 ) : (
                   src.label
                 )}
-                {i < (person.sources?.length ?? 0) - 1 ? ' · ' : ''}
+                {i < (current.sources?.length ?? 0) - 1 ? ' · ' : ''}
               </span>
             ))}
           </div>
         )}
-
       </div>
     </div>
   )
