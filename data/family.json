@@ -443,7 +443,11 @@
       "ahnentafel": 25,
       "name": "Karoline Torgersdatter",
       "gender": "f",
-      "ghost": true,
+      "born": "ca. 1816",
+      "place": "Eker",
+      "notes": [
+        "49 år gammel ved folketellingen 1865 (beregnet f. ca. 1816)."
+      ],
       "spouseId": "simen_ellefsen"
     },
     {
@@ -486,8 +490,8 @@
       "ahnentafel": 29,
       "name": "Karen Werner",
       "gender": "f",
-      "ghost": true,
-      "notes": ["Etternavn og opphav ukjent."],
+      "born": "1849",
+      "notes": ["Pikenavn ukjent. Gift med Eduard Werner ca. 1875, Drammen."],
       "spouseId": "eduard_werner"
     },
     {
