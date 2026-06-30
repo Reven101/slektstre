@@ -247,7 +247,7 @@ body::after {
   border-style: dashed;
   border-top-style: solid;
   border-color: var(--line);
-  border-top-color: var(--line);
+  border-top-color: var(--crimson);
   background: var(--card);
 }
 .p-card.ghost:hover { transform: none; box-shadow: none; }
