@@ -15,7 +15,8 @@
       "ahnentafel": 2,
       "name": "Tom Hustad",
       "gender": "m",
-      "born": "1921",
+      "born": "4. des 1921",
+      "died": "31. okt 2005",
       "fatherId": "tormod",
       "motherId": "anne_h"
     },
@@ -25,7 +26,8 @@
       "name": "Hilde Hustad",
       "maiden": "Simensen",
       "gender": "f",
-      "born": "1934",
+      "born": "28. apr 1934",
+      "died": "29. sep 2018",
       "fatherId": "erling",
       "motherId": "sigrid_s"
     },

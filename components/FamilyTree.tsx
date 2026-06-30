@@ -141,16 +141,18 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
               </div>
             </div>
 
-            {/* Connector 5→4 */}
+            {/* Connector 5→4: two Y-shapes */}
             <div className="connector" style={{ height: 36 }}>
-              {conn({ top: 0, left: '12.5%', width: '1.5px', height: 36 })}
-              {conn({ top: 0, left: '37.5%', width: '1.5px', height: 36 })}
-              {conn({ top: 0, left: '62.5%', width: '1.5px', height: 36 })}
-              {conn({ top: 0, left: '87.5%', width: '1.5px', height: 36 })}
-              {conn({ bottom: 0, left: '12.5%', right: '62.5%', height: '1.5px' })}
-              {conn({ bottom: 0, left: '37.5%', right: '37.5%', height: '1.5px' })}
-              {conn({ top: 0, left: '25%', width: '1.5px', height: 36 })}
-              {conn({ top: 0, left: '75%', width: '1.5px', height: 36 })}
+              {/* Left Y: (8,9)@12.5% + (10,11)@37.5% → (4,5)@25% */}
+              {conn({ top: 0, left: '12.5%', width: '1.5px', height: 18 })}
+              {conn({ top: 0, left: '37.5%', width: '1.5px', height: 18 })}
+              {conn({ top: 17, left: '12.5%', right: '62.5%', height: '1.5px' })}
+              {conn({ top: 17, left: '25%', width: '1.5px', height: 19 })}
+              {/* Right Y: (12,13)@62.5% + (14,15)@87.5% → (6,7)@75% */}
+              {conn({ top: 0, left: '62.5%', width: '1.5px', height: 18 })}
+              {conn({ top: 0, left: '87.5%', width: '1.5px', height: 18 })}
+              {conn({ top: 17, left: '62.5%', right: '12.5%', height: '1.5px' })}
+              {conn({ top: 17, left: '75%', width: '1.5px', height: 19 })}
             </div>
 
             {/* GEN 4 — Besteforeldre */}
@@ -162,12 +164,10 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
               </div>
             </div>
 
-            {/* Connector 4→3 */}
+            {/* Connector 4→3: straight verticals, no cross-connection */}
             <div className="connector" style={{ height: 32 }}>
               {conn({ top: 0, left: '25%', width: '1.5px', height: 32 })}
               {conn({ top: 0, left: '75%', width: '1.5px', height: 32 })}
-              {conn({ bottom: 0, left: '25%', right: '25%', height: '1.5px' })}
-              {conn({ top: 0, left: '50%', width: '1.5px', height: 32 })}
             </div>
 
             {/* GEN 3 — Foreldre */}
@@ -179,12 +179,12 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
               </div>
             </div>
 
-            {/* Connector 3→1 */}
+            {/* Connector 3→1: Tom@25% + Hilde@75% → Simen@50% */}
             <div className="connector" style={{ height: 32 }}>
-              {conn({ top: 0, left: '35%', width: '1.5px', height: 32 })}
-              {conn({ top: 0, left: '65%', width: '1.5px', height: 32 })}
-              {conn({ bottom: 0, left: '35%', right: '35%', height: '1.5px' })}
-              {conn({ top: 0, left: '50%', width: '1.5px', height: 32 })}
+              {conn({ top: 0, left: '25%', width: '1.5px', height: 16 })}
+              {conn({ top: 0, left: '75%', width: '1.5px', height: 16 })}
+              {conn({ top: 15, left: '25%', right: '25%', height: '1.5px' })}
+              {conn({ top: 15, left: '50%', width: '1.5px', height: 17 })}
             </div>
 
             {/* GEN 1 — Proband */}

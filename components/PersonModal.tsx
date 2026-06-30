@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { Person } from './types'
 
 interface PersonModalProps {
@@ -20,6 +20,13 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
   const father = byId(current.fatherId)
   const mother  = byId(current.motherId)
   const spouse  = byId(current.spouseId)
+
+  const siblings = useMemo(() => {
+    const parentWithChildren = [father, mother].find(p => p?.children && p.children.length > 0)
+    if (!parentWithChildren?.children) return []
+    const firstName = current.name.split(' ')[0]
+    return parentWithChildren.children.filter(c => !c.toLowerCase().includes(firstName.toLowerCase()))
+  }, [father, mother, current])
 
   const dates   = [current.born, current.died].filter(Boolean).join(' – ')
   const married = current.marriedDate
@@ -140,6 +147,18 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
             {current.notes.map((note, i) => (
               <p key={i}>{note}</p>
             ))}
+          </div>
+        )}
+
+        {/* SØSKEN */}
+        {siblings.length > 0 && (
+          <div className="modal-section">
+            <div className="modal-section-title">Søsken</div>
+            <div className="modal-chips">
+              {siblings.map((sib, i) => (
+                <div key={i} className="modal-chip static">{sib}</div>
+              ))}
+            </div>
           </div>
         )}
 
