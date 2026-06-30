@@ -29,7 +29,7 @@
     {
       "id": "hilde",
       "ahnentafel": 3,
-      "name": "Hilde Hustad",
+      "name": "Hilde Sofie Simensen",
       "maiden": "Hilde Sofie Simensen",
       "gender": "f",
       "born": "28. apr 1934",
@@ -74,7 +74,6 @@
       "born": "20. mar 1901",
       "died": "10. jan 1995",
       "notes": [
-        "Levde til Simen var 25 år gammel.",
         "Gift 30. april 1921 med Tormod Kristoffer Hustad.",
         "Far: Carl Husberg (overretssagfører, Oslo)."
       ],
@@ -104,7 +103,7 @@
       "spouseId": "sigrid_s",
       "marriedYear": "1933",
       "children": [
-        "Hilde Hustad, f. Simensen (f. 28. apr 1934, d. 29. sep 2018) — Simens mor",
+        "Hilde Sofie Simensen (f. 28. apr 1934, d. 29. sep 2018) — Simens mor",
         "Bente Simensen (f. 1938, g.m. Bendixen)",
         "Christian Julius Simensen (f. 1942, d. 2025)"
       ]
