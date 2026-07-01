@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Josefin+Sans:wght@300;400;600&display=swap');
-
 /* ── TOKENS — WA: parchment + crimson + amber ── */
 :root {
+  --font-cormorant-garamond: var(--font-cormorant), serif;
+  --font-josefin-sans: var(--font-josefin), sans-serif;
   --bg:        #F0E6C8;
   --bg-2:      #E6D8B0;
   --card:      #FFFFFF;
@@ -30,7 +30,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Josefin Sans', 'Helvetica Neue', sans-serif;
+  font-family: var(--font-josefin), 'Helvetica Neue', sans-serif;
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -56,7 +56,7 @@ body::after {
 }
 
 .eyebrow {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .6rem;
   font-weight: 600;
   letter-spacing: .55em;
@@ -67,7 +67,7 @@ body::after {
 }
 
 .site-header h1 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-cormorant-garamond);
   font-size: clamp(3.2rem, 9vw, 7rem);
   font-weight: 900;
   font-style: italic;
@@ -78,7 +78,7 @@ body::after {
 }
 
 .subtitle {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .62rem;
   font-weight: 300;
   letter-spacing: .3em;
@@ -97,7 +97,7 @@ body::after {
 }
 .stat-item { text-align: center; }
 .stat-num {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-cormorant-garamond);
   font-size: 2rem;
   font-weight: 700;
   color: var(--gold);
@@ -105,7 +105,7 @@ body::after {
   line-height: 1;
 }
 .stat-label {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .52rem;
   font-weight: 600;
   letter-spacing: .2em;
@@ -124,7 +124,7 @@ body::after {
 .search-input {
   width: 100%;
   padding: 12px 40px 12px 18px;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .9rem;
   font-weight: 300;
   color: var(--ink);
@@ -151,13 +151,13 @@ body::after {
   font-size: .85rem;
   color: var(--ink-3);
   padding: 4px;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   transition: color .1s;
 }
 .search-clear:hover { color: var(--crimson); }
 .search-count {
   text-align: center;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .55rem;
   letter-spacing: .15em;
   text-transform: uppercase;
@@ -186,7 +186,7 @@ body::after {
 .tree-mobile { display: none; padding: 24px 16px 40px; }
 .tree-mobile .gen-section { margin-bottom: 28px; }
 .tree-mobile .gen-label-m {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .55rem;
   font-weight: 600;
   letter-spacing: .25em;
@@ -267,7 +267,7 @@ body::after {
 }
 
 .p-role {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .5rem;
   font-weight: 600;
   letter-spacing: .2em;
@@ -276,7 +276,7 @@ body::after {
   margin-bottom: 4px;
 }
 .p-name {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-cormorant-garamond);
   font-weight: 700;
   font-style: italic;
   font-size: 1.05rem;
@@ -288,28 +288,28 @@ body::after {
 .p-card.warn .p-name { color: var(--crimson); }
 
 .p-dates {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .6rem;
   font-weight: 400;
   color: var(--gold);
   margin-top: 4px;
 }
 .p-maiden {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .52rem;
   color: var(--ink-3);
   font-weight: 300;
   margin-top: 2px;
 }
 .p-place {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-cormorant-garamond);
   font-size: .82rem;
   font-style: italic;
   color: var(--ink-3);
   margin-top: 2px;
 }
 .p-occ {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .55rem;
   color: var(--ink-2);
   margin-top: 3px;
@@ -317,7 +317,7 @@ body::after {
 }
 .p-tag {
   display: inline-block;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .48rem;
   font-weight: 600;
   letter-spacing: .12em;
@@ -330,7 +330,7 @@ body::after {
 }
 .p-me-tag {
   display: inline-block;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .48rem;
   font-weight: 600;
   letter-spacing: .12em;
@@ -346,7 +346,7 @@ body::after {
 .gen { width: 100%; display: flex; flex-direction: column; align-items: center; }
 .gen-label {
   width: 100%;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .5rem;
   font-weight: 600;
   letter-spacing: .25em;
@@ -414,7 +414,7 @@ body::after {
   border-bottom: 1px solid var(--line);
 }
 .modal-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-cormorant-garamond);
   font-size: clamp(1.7rem, 5vw, 2.3rem);
   font-weight: 700;
   font-style: italic;
@@ -422,7 +422,7 @@ body::after {
   line-height: 1.1;
 }
 .modal-maiden {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .58rem;
   font-weight: 300;
   color: var(--ink-3);
@@ -441,7 +441,7 @@ body::after {
   flex-shrink: 0;
   margin-left: 14px;
   transition: border-color .1s, color .1s;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
 }
 .modal-close:hover { border-color: var(--crimson); color: var(--crimson); }
 
@@ -454,7 +454,7 @@ body::after {
 @media (max-width: 480px) { .modal-meta { grid-template-columns: 1fr; gap: 10px; } }
 
 .modal-meta-label {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .52rem;
   font-weight: 600;
   letter-spacing: .2em;
@@ -463,13 +463,13 @@ body::after {
   margin-bottom: 3px;
 }
 .modal-meta-value {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-cormorant-garamond);
   font-size: 1.1rem;
   color: var(--ink-2);
   line-height: 1.4;
 }
 .modal-meta-value.gold {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .85rem;
   font-weight: 400;
   color: var(--gold);
@@ -478,7 +478,7 @@ body::after {
 
 .modal-section { margin-bottom: 20px; }
 .modal-section-title {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .52rem;
   font-weight: 600;
   letter-spacing: .25em;
@@ -492,7 +492,7 @@ body::after {
 .modal-section-title::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 
 .modal-notes p {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-cormorant-garamond);
   font-size: 1.1rem;
   color: var(--ink-2);
   line-height: 1.7;
@@ -501,7 +501,7 @@ body::after {
 
 .modal-chips { display: flex; flex-wrap: wrap; gap: 7px; }
 .modal-chip {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .6rem;
   font-weight: 300;
   padding: 6px 12px;
@@ -519,7 +519,7 @@ body::after {
 .modal-chip.static:hover { border-color: var(--line); color: var(--ink-2); }
 
 .modal-sources {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .52rem;
   font-weight: 300;
   color: var(--ink-3);
@@ -540,7 +540,7 @@ body::after {
 /* ── PAGE SECTIONS ── */
 .page-section { max-width: 1200px; margin: 0 auto 40px; padding: 0 24px; }
 .section-title {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .55rem;
   font-weight: 600;
   letter-spacing: .3em;
@@ -564,7 +564,7 @@ body::after {
 }
 .info-card.warn { border-top-color: var(--crimson); background: var(--warn-bg); }
 .info-card-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-cormorant-garamond);
   font-weight: 700;
   font-size: 1.12rem;
   margin-bottom: 9px;
@@ -572,7 +572,7 @@ body::after {
 }
 .info-card.warn .info-card-title { color: var(--crimson); }
 .info-card-body {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .62rem;
   font-weight: 300;
   color: var(--ink-3);
@@ -580,7 +580,7 @@ body::after {
 }
 
 .source-text {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin-sans);
   font-size: .52rem;
   font-weight: 300;
   color: var(--ink-3);

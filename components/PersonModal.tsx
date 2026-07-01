@@ -1,7 +1,38 @@
 'use client'
 
-import { useEffect, useState, useMemo } from 'react'
-import { Person } from './types'
+import { useEffect, useRef, useState, useMemo } from 'react'
+import { ChildEntry, Person } from './types'
+import { buildPersonMap, getSiblings, resolveChildEntry } from './family'
+
+const FOCUSABLE_SELECTOR =
+  'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+
+function NavChip({
+  onClick,
+  className = 'modal-chip',
+  children,
+}: {
+  onClick: () => void
+  className?: string
+  children: React.ReactNode
+}) {
+  return (
+    <div
+      className={className}
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onClick()
+        }
+      }}
+    >
+      {children}
+    </div>
+  )
+}
 
 interface PersonModalProps {
   person: Person
@@ -15,18 +46,18 @@ const DA_BASE = 'https://www.digitalarkivet.no/en/view/8/'
 export default function PersonModal({ person, allPersons, onClose, onNavigate }: PersonModalProps) {
   const [transitioning, setTransitioning] = useState(false)
   const [current, setCurrent] = useState(person)
+  const panelRef = useRef<HTMLDivElement>(null)
 
-  const byId = (id?: string) => allPersons.find(p => p.id === id)
+  const personById = useMemo(() => buildPersonMap(allPersons), [allPersons])
+  const byId = (id?: string) => (id ? personById.get(id) : undefined)
   const father = byId(current.fatherId)
   const mother  = byId(current.motherId)
   const spouse  = byId(current.spouseId)
 
-  const siblings = useMemo(() => {
-    const parentWithChildren = [father, mother].find(p => p?.children && p.children.length > 0)
-    if (!parentWithChildren?.children) return []
-    const firstName = current.name.split(' ')[0]
-    return parentWithChildren.children.filter(c => !c.toLowerCase().includes(firstName.toLowerCase()))
-  }, [father, mother, current])
+  const siblings = useMemo(
+    () => getSiblings(current, father, mother),
+    [father, mother, current]
+  )
 
   const dates   = [current.born, current.died].filter(Boolean).join(' – ')
   const married = current.marriedDate
@@ -34,6 +65,16 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
     : current.marriedYear
     ? `Gift ${current.marriedYear}`
     : null
+
+  const renderChildEntry = (entry: ChildEntry, key: number) => {
+    const { text, personId } = resolveChildEntry(entry, personById)
+    const linkedPerson = personId ? personById.get(personId) : undefined
+    return linkedPerson ? (
+      <NavChip key={key} onClick={() => navigate(linkedPerson)}>{text}</NavChip>
+    ) : (
+      <div key={key} className="modal-chip static">{text}</div>
+    )
+  }
 
   const navigate = (p: Person) => {
     setTransitioning(true)
@@ -49,12 +90,38 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
   }, [person])
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    const previouslyFocused = document.activeElement as HTMLElement | null
+    panelRef.current?.querySelector<HTMLElement>(FOCUSABLE_SELECTOR)?.focus()
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+        return
+      }
+      if (e.key !== 'Tab' || !panelRef.current) return
+
+      const focusable = Array.from(
+        panelRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)
+      )
+      if (focusable.length === 0) return
+
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
+
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
     return () => {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
+      previouslyFocused?.focus()
     }
   }, [onClose])
 
@@ -67,6 +134,7 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
       aria-label={`Informasjon om ${current.name}`}
     >
       <div
+        ref={panelRef}
         className={`modal-panel${transitioning ? ' transitioning' : ''}`}
         onClick={e => e.stopPropagation()}
       >
@@ -109,6 +177,14 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
               <div className="modal-meta-value">
                 <span
                   onClick={() => navigate(spouse)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      navigate(spouse)
+                    }
+                  }}
                   style={{ cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '3px' }}
                 >
                   {spouse.name}
@@ -125,14 +201,14 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
             <div className="modal-section-title">Foreldre</div>
             <div className="modal-chips">
               {father && (
-                <div className="modal-chip" onClick={() => navigate(father)}>
+                <NavChip onClick={() => navigate(father)}>
                   Far:&nbsp;{father.name}{father.born ? ` · f. ${father.born}` : ''}
-                </div>
+                </NavChip>
               )}
               {mother && (
-                <div className="modal-chip" onClick={() => navigate(mother)}>
+                <NavChip onClick={() => navigate(mother)}>
                   Mor:&nbsp;{mother.name}{mother.born ? ` · f. ${mother.born}` : ''}
-                </div>
+                </NavChip>
               )}
             </div>
           </div>
@@ -155,9 +231,7 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
           <div className="modal-section">
             <div className="modal-section-title">Søsken</div>
             <div className="modal-chips">
-              {siblings.map((sib, i) => (
-                <div key={i} className="modal-chip static">{sib}</div>
-              ))}
+              {siblings.map(renderChildEntry)}
             </div>
           </div>
         )}
@@ -167,9 +241,7 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
           <div className="modal-section">
             <div className="modal-section-title">Barn</div>
             <div className="modal-chips">
-              {current.children.map((child, i) => (
-                <div key={i} className="modal-chip static">{child}</div>
-              ))}
+              {current.children.map(renderChildEntry)}
             </div>
           </div>
         )}
