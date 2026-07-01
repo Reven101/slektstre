@@ -336,7 +336,8 @@
         "Ble enke i 1852 da Ole Tørrissen døde — trolig 31 år gammel."
       ],
       "sources": [
-        { "label": "Fødte og døpte 1821, Inderøy", "sourceId": "pd00000041360861" }
+        { "label": "Fødte og døpte 1821, Inderøy", "sourceId": "pd00000041360861" },
+        { "label": "Dødsfall 1903, Digitalarkivet (uspesifisert post)" }
       ],
       "spouseId": "ole_torrissen",
       "fatherId": "lorentz_aagesen",
@@ -357,7 +358,8 @@
         "Giftet seg med Margrethe Christiansdatter Volan fra Berg i Mosaegen."
       ],
       "sources": [
-        { "label": "Vielse, Inderøy", "sourceId": "pv00000008831226" }
+        { "label": "Vielse, Inderøy", "sourceId": "pv00000008831226" },
+        { "label": "Dødsfall 1871, Digitalarkivet (uspesifisert post)" }
       ],
       "spouseId": "margrethe_volan",
       "fatherId": "peder_bragstad",
@@ -377,7 +379,8 @@
         "Fødested: Berg i Mosaegen, Inderøy."
       ],
       "sources": [
-        { "label": "Vielse, Inderøy", "sourceId": "pv00000008831226" }
+        { "label": "Vielse, Inderøy", "sourceId": "pv00000008831226" },
+        { "label": "Dødsfall 1909, Digitalarkivet (uspesifisert post)" }
       ],
       "spouseId": "sivert_bragstad",
       "fatherId": "kristian_volan"
