@@ -7,7 +7,11 @@ export default function Home() {
   const data = familyData as FamilyData
 
   const knownPersons = data.persons.filter(p => !p.ghost)
-  const years = knownPersons
+  // År historikk regnes fra ALLE personer med en tolkbar dato, ikke bare de
+  // uten ghost-merking — flere ghost-personer (f.eks. Ole Tørrissen Hustad,
+  // f. 1830) har fullt ut kildebelagte datoer, "ghost" markerer sparsom
+  // dokumentasjon totalt sett, ikke fravær av dato.
+  const years = data.persons
     .flatMap(p => [p.born, p.died])
     .map(parseYear)
     .filter((n): n is number => n != null)
@@ -24,7 +28,7 @@ export default function Home() {
     <>
       <header className="site-header">
         <span className="eyebrow">Slektstre</span>
-        <h1>Halvparten av deg</h1>
+        <h1>Fra Napoleon til deg</h1>
         <p className="subtitle">
           Hustad&nbsp;·&nbsp;Husberg&nbsp;·&nbsp;Simensen&nbsp;·&nbsp;Werner
         </p>
