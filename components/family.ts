@@ -19,11 +19,15 @@ const BRANCH_CLASSES: Record<number, string> = { 4: 'br-a', 5: 'br-b', 6: 'br-c'
  * Every ahnentafel number >= 4 descends from exactly one of the four
  * great-great-grandparent couples (ahnentafel 4–7 — the Hustad/Husberg/
  * Simensen/Werner lines), found by right-shifting down to that generation.
- * Used to color-code cards by family branch. Returns '' for 1–3 (the trunk:
- * Far, Farfar, Farmor), which aren't part of a branch yet.
+ * Ahnentafel 2 and 3 (Farfar, Farmor) are one generation too shallow for
+ * that shift, but each still belongs to one line by surname — the same one
+ * as their own father (ahnentafel 2n) — so they inherit it from there.
+ * Used to color-code cards by family branch. Returns '' only for 1 (Far),
+ * the trunk itself.
  */
 export function branchClass(ahnentafel: number): string {
-  if (ahnentafel < 4) return ''
+  if (ahnentafel < 2) return ''
+  if (ahnentafel < 4) return branchClass(ahnentafel * 2)
   const depth = Math.floor(Math.log2(ahnentafel))
   const quadrant = ahnentafel >> (depth - 2)
   return BRANCH_CLASSES[quadrant] ?? ''

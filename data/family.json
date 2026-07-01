@@ -17,6 +17,9 @@
       "gender": "m",
       "born": "4. des 1921",
       "died": "31. okt 2005",
+      "notes": [
+        "Døpt Tormod, men kalt Tom fra barndommen av – for å skille seg fra faren, som allerede het Tormod."
+      ],
       "fatherId": "tormod",
       "motherId": "anne_h",
       "children": [
