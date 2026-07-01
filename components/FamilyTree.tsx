@@ -52,6 +52,7 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
   const [selected, setSelected] = useState<Person | null>(null)
   const [search, setSearch] = useState('')
   const [viewMode, setViewMode] = useState<'tree' | 'timeline'>('tree')
+  const [activeSection, setActiveSection] = useState(0)
 
   const persons = data.persons
   const personById = useMemo(() => buildPersonMap(persons), [persons])
@@ -89,6 +90,28 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
     const id = new URLSearchParams(window.location.search).get('fokus')
     if (id && personById.has(id)) setFocusId(id)
   }, [personById])
+
+  // Drives the mobile gen-nav dots: highlights whichever generation section
+  // is nearest the top of the viewport as the user scrolls the (long) list.
+  useEffect(() => {
+    if (viewMode !== 'tree' || focusId) return
+    const sections = Array.from({ length: 6 }, (_, i) => document.getElementById(`gen-sec-${i}`))
+      .filter((el): el is HTMLElement => !!el)
+    if (sections.length === 0) return
+
+    const observer = new IntersectionObserver(
+      entries => {
+        const visible = entries.filter(e => e.isIntersecting)
+        if (visible.length === 0) return
+        const topMost = visible.reduce((a, b) => (a.boundingClientRect.top < b.boundingClientRect.top ? a : b))
+        const idx = sections.findIndex(el => el === topMost.target)
+        if (idx !== -1) setActiveSection(idx)
+      },
+      { rootMargin: '-10% 0px -70% 0px', threshold: 0 }
+    )
+    sections.forEach(el => observer.observe(el))
+    return () => observer.disconnect()
+  }, [viewMode, focusId])
 
   const byAhnMap = useMemo(() => {
     const m = new Map<number, Person>()
@@ -128,6 +151,7 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
     // less certain — only placeholders should be dimmed on mobile, not real people.
     if (!p) return (
       <div key={n} className={['p-card', 'ghost', 'placeholder', branchClass(n)].filter(Boolean).join(' ')} style={{ flex: 1, minWidth: 120 }}>
+        <div className="p-avatar-spacer" aria-hidden="true" />
         <div className="p-body">
           <div className="p-role">{role}</div>
           <div className="p-name">ukjent</div>
@@ -136,6 +160,28 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
     )
     return <PersonCard key={p.id} person={p} role={role} onClick={selectPerson} searchState={searchState(p)} />
   }
+
+  // Mobile-only: the same generations as the desktop tree, flattened into a
+  // list so each can get a scroll-anchor id (for the gen-nav jump dots below)
+  // and a running generation number (for the gen-badge in its header).
+  const mobileGens: { label: string; content: React.ReactNode }[] = [
+    {
+      label: 'Din kjære far og hans søsken',
+      content: (
+        <>
+          {mySiblings.map(p => (
+            <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Tante' : 'Onkel'} onClick={selectPerson} searchState={searchState(p)} />
+          ))}
+          {card(1)}
+        </>
+      ),
+    },
+    { label: 'Besteforeldre', content: <>{card(2)}{card(3)}</> },
+    { label: 'Oldeforeldre', content: <>{card(4)}{card(5)}{card(6)}{card(7)}</> },
+    { label: 'Tippoldeforeldre', content: <>{[8, 9, 10, 11, 12, 13, 14, 15].map(n => card(n))}</> },
+    { label: 'Tipp-tippoldeforeldre', content: <>{Array.from({ length: 16 }, (_, i) => i + 16).map(n => card(n))}</> },
+    { label: 'Tipp-tipp-tippoldeforeldre', content: <>{Array.from({ length: 32 }, (_, i) => i + 32).map(n => card(n))}</> },
+  ]
 
   const conn = (style: React.CSSProperties, key?: React.Key) => (
     <div key={key} className="conn-line" style={style} />
@@ -343,54 +389,32 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
 
         {/* ── MOBILE TREE ── */}
         <div className="tree-mobile">
-          <div className="gen-section">
-            <div className="gen-label-m">Din kjære far og hans søsken</div>
-            <div className="gen-cards-row">
-              {mySiblings.map(p => (
-                <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Tante' : 'Onkel'} onClick={selectPerson} searchState={searchState(p)} />
-              ))}
-              {card(1)}
+          {mobileGens.map((g, i) => (
+            <div key={g.label} id={`gen-sec-${i}`} className="gen-section">
+              <div className="gen-label-m">
+                <span className="gen-badge">{i + 1}</span>
+                {g.label}
+              </div>
+              <div className="gen-cards-row">{g.content}</div>
             </div>
-          </div>
-
-          <div className="gen-section">
-            <div className="gen-label-m">Besteforeldre</div>
-            <div className="gen-cards-row">
-              {card(2)}{card(3)}
-            </div>
-          </div>
-
-          <div className="gen-section">
-            <div className="gen-label-m">Oldeforeldre</div>
-            <div className="gen-cards-row">
-              {card(4)}{card(5)}{card(6)}{card(7)}
-            </div>
-          </div>
-
-          <div className="gen-section">
-            <div className="gen-label-m">Tippoldeforeldre</div>
-            <div className="gen-cards-row">
-              {card(8)}{card(9)}{card(10)}{card(11)}
-              {card(12)}{card(13)}{card(14)}{card(15)}
-            </div>
-          </div>
-
-          <div className="gen-section">
-            <div className="gen-label-m">Tipp-tippoldeforeldre</div>
-            <div className="gen-cards-row">
-              {([16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31] as number[]).map(n => card(n))}
-            </div>
-          </div>
-
-          <div className="gen-section">
-            <div className="gen-label-m">Tipp-tipp-tippoldeforeldre</div>
-            <div className="gen-cards-row">
-              {Array.from({ length: 32 }, (_, i) => i + 32).map(n => card(n))}
-            </div>
-          </div>
+          ))}
         </div>
 
       </div>
+      )}
+
+      {viewMode === 'tree' && !focusId && (
+        <nav className="gen-nav" aria-label="Hopp til generasjon">
+          {mobileGens.map((g, i) => (
+            <button
+              key={g.label}
+              className={`gen-nav-dot${i === activeSection ? ' active' : ''}`}
+              onClick={() => document.getElementById(`gen-sec-${i}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+              aria-label={g.label}
+              title={g.label}
+            />
+          ))}
+        </nav>
       )}
 
       <div className="page-section" style={{ marginTop: 40 }}>

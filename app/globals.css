@@ -213,20 +213,51 @@ body::after {
 .tree-mobile { display: none; padding: 24px 16px 40px; }
 .tree-mobile .gen-section { margin-bottom: 28px; }
 .tree-mobile .gen-label-m {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
   font-family: var(--font-josefin-sans);
   font-size: .55rem;
   font-weight: 600;
   letter-spacing: .25em;
   text-transform: uppercase;
   color: var(--crimson);
-  padding-bottom: 8px;
-  margin-bottom: 10px;
-  border-bottom: 1.5px solid var(--line);
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 6px 14px 6px 6px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+.gen-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  color: #fff;
+  font-family: var(--font-josefin-sans);
+  font-size: .55rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  flex-shrink: 0;
 }
 .tree-mobile .gen-cards-row {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  position: relative;
+}
+.tree-mobile .gen-cards-row::before {
+  content: '';
+  position: absolute;
+  left: 33px;
+  top: 19px;
+  bottom: 19px;
+  width: 1.5px;
+  background: var(--line-2);
 }
 @media (max-width: 900px) {
   .tree-desktop { display: none; }
@@ -249,6 +280,15 @@ body::after {
   width: 38px;
   height: 38px;
 }
+.p-avatar-spacer { display: none; }
+.tree-mobile .p-avatar-spacer {
+  display: block;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px dashed var(--line-2);
+  flex-shrink: 0;
+}
 .tree-mobile .p-body { min-width: 0; flex: 1; }
 .tree-mobile .p-role { margin-bottom: 1px; }
 .tree-mobile .p-name {
@@ -267,6 +307,34 @@ body::after {
   display: none;
 }
 .tree-mobile .p-card.placeholder { opacity: .45; }
+
+/* ── MOBILE GEN-NAV — floating jump dots, one per generation section ── */
+.gen-nav {
+  position: fixed;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 500;
+}
+@media (min-width: 901px) { .gen-nav { display: none; } }
+.gen-nav-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line-2);
+  background: var(--card);
+  padding: 0;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, transform .15s;
+}
+.gen-nav-dot.active {
+  background: var(--crimson);
+  border-color: var(--crimson);
+  transform: scale(1.4);
+}
 
 /* ── PERSON CARD ── */
 .p-card {
