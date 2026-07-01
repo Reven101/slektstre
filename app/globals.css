@@ -336,6 +336,57 @@ body::after {
   transform: scale(1.4);
 }
 
+/* ── EXPLORER TREE — "Utforsk": tap-to-reveal ancestors instead of the
+   full generation list. Reuses .tree-mobile's compact card styling (the
+   selector below just needs the .tree-mobile class present on an ancestor)
+   but forces it visible at every viewport width, not just <=900px. ── */
+.explore-hint {
+  font-family: var(--font-josefin-sans);
+  font-size: .78rem;
+  font-weight: 300;
+  color: var(--ink-3);
+  text-align: center;
+  margin-bottom: 20px;
+}
+.explore-tree.tree-mobile {
+  display: block;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0;
+}
+.explore-node { display: flex; flex-direction: column; }
+.explore-row { display: flex; align-items: center; gap: 10px; }
+.explore-row .p-card { flex: 1; min-width: 0; }
+.explore-toggle {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line-2);
+  background: var(--card);
+  color: var(--ink-3);
+  font-family: var(--font-josefin-sans);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s, transform .15s;
+}
+.explore-toggle:hover { border-color: var(--crimson-l); color: var(--crimson); }
+.explore-toggle.expanded {
+  background: var(--crimson);
+  border-color: var(--crimson);
+  color: #fff;
+  transform: rotate(45deg);
+}
+.explore-children {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0 10px 16px;
+  padding-left: 20px;
+  border-left: 1.5px dashed var(--line-2);
+}
+
 /* ── PERSON CARD ── */
 .p-card {
   background: var(--card);
