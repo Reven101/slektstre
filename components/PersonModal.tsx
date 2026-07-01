@@ -1,11 +1,19 @@
 'use client'
 
 import { useEffect, useRef, useState, useMemo } from 'react'
+import Image from 'next/image'
 import { ChildEntry, Person } from './types'
-import { buildPersonMap, getSiblings, resolveChildEntry } from './family'
+import { buildPersonMap, describeRelationship, findRoot, getSiblings, resolveChildEntry } from './family'
 
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+
+function initials(name: string): string {
+  const parts = name.trim().split(/\s+/)
+  const first = parts[0]?.[0] ?? ''
+  const last = parts.length > 1 ? parts[parts.length - 1][0] : ''
+  return (first + last).toUpperCase()
+}
 
 function NavChip({
   onClick,
@@ -39,14 +47,29 @@ interface PersonModalProps {
   allPersons: Person[]
   onClose: () => void
   onNavigate: (person: Person) => void
+  onFocus?: (person: Person) => void
 }
 
 const DA_BASE = 'https://www.digitalarkivet.no/en/view/8/'
 
-export default function PersonModal({ person, allPersons, onClose, onNavigate }: PersonModalProps) {
+export default function PersonModal({ person, allPersons, onClose, onNavigate, onFocus }: PersonModalProps) {
   const [transitioning, setTransitioning] = useState(false)
   const [current, setCurrent] = useState(person)
+  const [copied, setCopied] = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
+
+  const shareLink = async () => {
+    const url = new URL(window.location.href)
+    url.searchParams.set('person', current.id)
+    const text = url.toString()
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1600)
+    } catch {
+      window.prompt('Kopier lenken:', text)
+    }
+  }
 
   const personById = useMemo(() => buildPersonMap(allPersons), [allPersons])
   const byId = (id?: string) => (id ? personById.get(id) : undefined)
@@ -57,6 +80,12 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
   const siblings = useMemo(
     () => getSiblings(current, father, mother),
     [father, mother, current]
+  )
+
+  const root = useMemo(() => findRoot(allPersons), [allPersons])
+  const relationship = useMemo(
+    () => (root ? describeRelationship(root, current, personById) : null),
+    [root, current, personById]
   )
 
   const dates   = [current.born, current.died].filter(Boolean).join(' – ')
@@ -78,6 +107,7 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
 
   const navigate = (p: Person) => {
     setTransitioning(true)
+    setCopied(false)
     setTimeout(() => {
       setCurrent(p)
       onNavigate(p)
@@ -142,13 +172,34 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
 
         {/* HEADER */}
         <div className="modal-header">
-          <div>
-            <div className="modal-title">{current.name}</div>
-            {current.maiden && (
-              <div className="modal-maiden">f. {current.maiden}</div>
+          <div className="modal-header-main">
+            {current.photo ? (
+              <Image className="modal-portrait" src={current.photo} alt="" width={72} height={72} />
+            ) : (
+              <div className="modal-portrait modal-portrait-fallback" aria-hidden="true">{initials(current.name)}</div>
             )}
+            <div>
+              <div className="modal-title">{current.name}</div>
+              {current.maiden && (
+                <div className="modal-maiden">f. {current.maiden}</div>
+              )}
+            </div>
           </div>
-          <button className="modal-close" onClick={onClose} aria-label="Lukk">✕</button>
+          <div className="modal-header-actions">
+            {onFocus && (
+              <button
+                className="modal-share"
+                onClick={() => onFocus(current)}
+                aria-label={`Vis treet fokusert på ${current.name}`}
+              >
+                🌳 Vis herfra
+              </button>
+            )}
+            <button className="modal-share" onClick={shareLink} aria-label="Kopier delbar lenke til denne personen">
+              {copied ? '✓ Kopiert' : '🔗 Del'}
+            </button>
+            <button className="modal-close" onClick={onClose} aria-label="Lukk">✕</button>
+          </div>
         </div>
 
         {/* META */}
@@ -157,6 +208,12 @@ export default function PersonModal({ person, allPersons, onClose, onNavigate }:
             <div>
               <div className="modal-meta-label">Levetid</div>
               <div className="modal-meta-value gold">{dates}</div>
+            </div>
+          )}
+          {relationship && (
+            <div>
+              <div className="modal-meta-label">Slektskap med Simen</div>
+              <div className="modal-meta-value">{relationship}</div>
             </div>
           )}
           {current.place && (

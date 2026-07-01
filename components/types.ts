@@ -8,6 +8,8 @@ export type Person = {
   died?: string
   place?: string
   occupation?: string
+  /** Path under /public, e.g. "/photos/tormod.jpg". Omit if no photo exists. */
+  photo?: string
   notes?: string[]
   ghost?: boolean
   highlight?: 'warn' | 'me'

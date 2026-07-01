@@ -1,6 +1,7 @@
 import familyData from '@/data/family.json'
 import FamilyTree from '@/components/FamilyTree'
 import { FamilyData } from '@/components/types'
+import { parseYear } from '@/components/family'
 
 export default function Home() {
   const data = familyData as FamilyData
@@ -8,9 +9,8 @@ export default function Home() {
   const knownPersons = data.persons.filter(p => !p.ghost)
   const years = knownPersons
     .flatMap(p => [p.born, p.died])
-    .filter(Boolean)
-    .map(s => parseInt(s!.slice(-4)))
-    .filter(n => !isNaN(n))
+    .map(parseYear)
+    .filter((n): n is number => n != null)
   const yearSpan = years.length > 0 ? Math.max(...years) - Math.min(...years) : 0
 
   // Ahnentafel-nummer n tilhører generasjon floor(log2(n)) + 1 (1=proband,
