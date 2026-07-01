@@ -7,7 +7,7 @@ import PersonModal from './PersonModal'
 import RootedTree from './RootedTree'
 import PlacesMap from './PlacesMap'
 import Timeline from './Timeline'
-import { buildPersonMap } from './family'
+import { branchClass, buildPersonMap } from './family'
 import { pct, mergeStep, stems } from './treeLayout'
 
 interface FamilyTreeProps {
@@ -124,9 +124,11 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
     const p = byAhn(n)
     const role = ROLES[n] ?? ''
     if (!p) return (
-      <div key={n} className="p-card ghost" style={{ flex: 1, minWidth: 120 }}>
-        <div className="p-role">{role}</div>
-        <div className="p-name">ukjent</div>
+      <div key={n} className={['p-card', 'ghost', branchClass(n)].filter(Boolean).join(' ')} style={{ flex: 1, minWidth: 120 }}>
+        <div className="p-body">
+          <div className="p-role">{role}</div>
+          <div className="p-name">ukjent</div>
+        </div>
       </div>
     )
     return <PersonCard key={p.id} person={p} role={role} onClick={selectPerson} searchState={searchState(p)} />

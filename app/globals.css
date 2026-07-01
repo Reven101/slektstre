@@ -224,17 +224,49 @@ body::after {
   border-bottom: 1.5px solid var(--line);
 }
 .tree-mobile .gen-cards-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-@media (max-width: 420px) {
-  .tree-mobile .gen-cards-row { grid-template-columns: 1fr; }
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 @media (max-width: 900px) {
   .tree-desktop { display: none; }
   .tree-mobile  { display: block; }
 }
+
+/* Compact mobile row: avatar + role/name/dates inline, secondary fields
+   (maiden name, place, occupation) hidden here but still shown in the modal
+   on tap — this is what actually shortens the "long list" scroll. */
+.tree-mobile .p-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: auto;
+  padding: 9px 14px;
+}
+.tree-mobile .p-photo,
+.tree-mobile .p-avatar-fallback {
+  position: static;
+  width: 38px;
+  height: 38px;
+}
+.tree-mobile .p-body { min-width: 0; flex: 1; }
+.tree-mobile .p-role { margin-bottom: 1px; }
+.tree-mobile .p-name {
+  font-size: .95rem;
+  padding-right: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tree-mobile .p-dates { margin-top: 1px; }
+.tree-mobile .p-maiden,
+.tree-mobile .p-place,
+.tree-mobile .p-occ,
+.tree-mobile .p-tag,
+.tree-mobile .p-me-tag {
+  display: none;
+}
+.tree-mobile .p-card.ghost { opacity: .45; }
 
 /* ── PERSON CARD ── */
 .p-card {
@@ -261,6 +293,25 @@ body::after {
   border-radius: 50%;
   object-fit: cover;
   border: 1.5px solid var(--line);
+}
+.p-avatar-fallback {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--line);
+  background: var(--crimson);
+  color: #fff;
+  font-family: var(--font-cormorant-garamond);
+  font-weight: 700;
+  font-style: italic;
+  font-size: .72rem;
+  flex-shrink: 0;
 }
 .p-card:hover {
   border-color: var(--line-2);
@@ -291,6 +342,18 @@ body::after {
 .p-card.ghost:hover { transform: none; box-shadow: none; }
 .p-card.ghost .p-name { color: var(--ink); }
 
+/* ── BRANCH COLOR CODING — the 4 great-great-grandparent lines named in the
+   subtitle (Hustad · Husberg · Simensen · Werner). Comes after .ghost so it
+   still colors "ukjent" placeholder cards by which branch they belong to. ── */
+.p-card.br-a { border-top-color: var(--crimson); }
+.p-card.br-a .p-avatar-fallback { background: var(--crimson); }
+.p-card.br-b { border-top-color: var(--gold); }
+.p-card.br-b .p-avatar-fallback { background: var(--gold); }
+.p-card.br-c { border-top-color: var(--olive); }
+.p-card.br-c .p-avatar-fallback { background: var(--olive); }
+.p-card.br-d { border-top-color: var(--navy); }
+.p-card.br-d .p-avatar-fallback { background: var(--navy); }
+
 .p-card.match {
   border-top-color: var(--crimson) !important;
   border-color: var(--crimson-l) !important;
@@ -320,6 +383,7 @@ body::after {
   font-size: 1.05rem;
   line-height: 1.18;
   color: var(--ink);
+  padding-right: 40px;
 }
 @media (max-width: 900px) { .p-name { font-size: 1.12rem; } }
 .p-card.me .p-name   { color: var(--olive); }

@@ -5,6 +5,30 @@ export function buildPersonMap(persons: Person[]): Map<string, Person> {
   return new Map(persons.map(p => [p.id, p]))
 }
 
+/** First + last initial, for avatar fallbacks when no photo exists. */
+export function initials(name: string): string {
+  const parts = name.trim().split(/\s+/)
+  const first = parts[0]?.[0] ?? ''
+  const last = parts.length > 1 ? parts[parts.length - 1][0] : ''
+  return (first + last).toUpperCase()
+}
+
+const BRANCH_CLASSES: Record<number, string> = { 4: 'br-a', 5: 'br-b', 6: 'br-c', 7: 'br-d' }
+
+/**
+ * Every ahnentafel number >= 4 descends from exactly one of the four
+ * great-great-grandparent couples (ahnentafel 4–7 — the Hustad/Husberg/
+ * Simensen/Werner lines), found by right-shifting down to that generation.
+ * Used to color-code cards by family branch. Returns '' for 1–3 (the trunk:
+ * Far, Farfar, Farmor), which aren't part of a branch yet.
+ */
+export function branchClass(ahnentafel: number): string {
+  if (ahnentafel < 4) return ''
+  const depth = Math.floor(Math.log2(ahnentafel))
+  const quadrant = ahnentafel >> (depth - 2)
+  return BRANCH_CLASSES[quadrant] ?? ''
+}
+
 /**
  * Descendants of a person are derived by reverse-scanning fatherId/motherId
  * across the whole dataset, not from the `children` array — most `children`
