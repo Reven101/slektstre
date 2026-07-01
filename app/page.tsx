@@ -6,11 +6,13 @@ import { parseYear } from '@/components/family'
 export default function Home() {
   const data = familyData as FamilyData
 
-  const knownPersons = data.persons.filter(p => !p.ghost)
-  // År historikk regnes fra ALLE personer med en tolkbar dato, ikke bare de
+  // "Personer" og "år historikk" telles fra ALLE personposter, ikke bare de
   // uten ghost-merking — flere ghost-personer (f.eks. Ole Tørrissen Hustad,
   // f. 1830) har fullt ut kildebelagte datoer, "ghost" markerer sparsom
-  // dokumentasjon totalt sett, ikke fravær av dato.
+  // dokumentasjon totalt sett, ikke fravær av person eller dato. Merk at
+  // dette er antall faktiske personposter i data/family.json — ikke antall
+  // kort-plasser i selve treet (som også viser tomme "ukjent"-plasshaldere
+  // for udokumenterte forfedre).
   const years = data.persons
     .flatMap(p => [p.born, p.died])
     .map(parseYear)
@@ -34,7 +36,7 @@ export default function Home() {
         </p>
         <div className="stat-bar">
           <div className="stat-item">
-            <span className="stat-num">{knownPersons.length}</span>
+            <span className="stat-num">{data.persons.length}</span>
             <span className="stat-label">Personer</span>
           </div>
           <div className="stat-item">
