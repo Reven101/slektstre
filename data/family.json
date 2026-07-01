@@ -189,7 +189,7 @@
         "Fullt navn: Karl Amandus Husberg. Gikk som «Carl».",
         "Artium Kristiania katedralskole 1884 (Meget Godt). Cand.jur. 1893.",
         "Overretssagfører, egen forretning, Oslo.",
-        "Far: Carl A. Husberg (handelsborger, Sarpsborg, f. ca. 1829 Tune prestegjeld).",
+        "Far: Karl August Husberg (handelsborger, Sarpsborg, f. 1829 Tune prestegjeld).",
         "Mor: Anne Margrethe f. Lowum (f. ca. 1837, Borge prestegjeld)."
       ],
       "fatherId": "carl_a_husberg",
@@ -372,14 +372,16 @@
     {
       "id": "carl_a_husberg",
       "ahnentafel": 20,
-      "name": "Carl A. Husberg",
+      "name": "Karl August Husberg",
       "gender": "m",
-      "born": "ca. 1829",
+      "born": "1829",
       "place": "Tune prestegjeld",
       "occupation": "Handelsborger, Sarpsborg",
       "notes": [
+        "Oppført som «Carl August Husberg» i vigselsprotokollen (Ungk. Kjbm., bosted Sarpsborg).",
         "Handelsborger (kjøbmann) i Sarpsborg.",
-        "Fødested bekreftet: Tune prestegjeld (1865-tellingen, alder 36).",
+        "Fødested bekreftet: Tune prestegjeld (1865-tellingen, alder 36; vigsel: Thune).",
+        "Far: Peter Vilhelm Husberg.",
         "Bosted 1865: St. Mariæ Gaden, Sarpsborg.",
         "Barn: Anna Wilhelmine (f. ca. 1863), Carl Amandus (f. 1865), Ludvig (f. 27. jun 1869), Marthe Fredrikke (g.m. Pharo 1898)."
       ],
@@ -390,8 +392,12 @@
       "ahnentafel": 21,
       "name": "Anne Margrethe Lowum",
       "gender": "f",
-      "born": "ca. 1837",
+      "born": "ca. 1836",
       "place": "Borge prestegjeld",
+      "notes": [
+        "Far: Lauritz Lovum.",
+        "Oppført som «Anne Margrethe Lovum, Jfr., f. Borge» i vigselsprotokollen."
+      ],
       "spouseId": "carl_a_husberg"
     },
     {
