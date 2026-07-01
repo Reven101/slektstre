@@ -540,9 +540,11 @@
       "ahnentafel": 34,
       "name": "Lorentz Aagesen",
       "gender": "m",
+      "born": "ca. 1794",
       "ghost": true,
       "notes": [
-        "Nevnt som far til Anna Lovisa Lorentzdatter (døpt 1821, Inderøy)."
+        "Nevnt som far til Anna Lovisa Lorentzdatter (døpt 1821, Inderøy).",
+        "Fødselsår ikke kildebelagt — anslått ut fra datterens fødselsår (typisk ~27 års aldersforskjell far/barn)."
       ],
       "sources": [
         { "label": "Fødte og døpte 1821, Inderøy", "sourceId": "pd00000041360861" }
@@ -555,9 +557,11 @@
       "name": "Johanna Larsdatter",
       "gender": "f",
       "place": "Krogshuus",
+      "born": "ca. 1797",
       "ghost": true,
       "notes": [
-        "Nevnt som mor til Anna Lovisa Lorentzdatter (døpt 1821, Inderøy)."
+        "Nevnt som mor til Anna Lovisa Lorentzdatter (døpt 1821, Inderøy).",
+        "Fødselsår ikke kildebelagt — anslått ut fra datterens fødselsår (typisk ~24 års aldersforskjell mor/barn)."
       ],
       "sources": [
         { "label": "Fødte og døpte 1821, Inderøy", "sourceId": "pd00000041360861" }
@@ -569,9 +573,11 @@
       "ahnentafel": 36,
       "name": "Peder Sivertsen Bragstad",
       "gender": "m",
+      "born": "ca. 1789",
       "ghost": true,
       "notes": [
-        "Nevnt som far til Sivert Pedersen Bragstad (f. ca. 1816) i vielsesprotokollen."
+        "Nevnt som far til Sivert Pedersen Bragstad (f. ca. 1816) i vielsesprotokollen.",
+        "Fødselsår ikke kildebelagt — anslått ut fra sønnens fødselsår (typisk ~27 års aldersforskjell far/barn)."
       ],
       "sources": [
         { "label": "Vielse, Inderøy", "sourceId": "pv00000008831226" }
@@ -582,9 +588,11 @@
       "ahnentafel": 38,
       "name": "Kristian Pedersen Volan",
       "gender": "m",
+      "born": "ca. 1802",
       "ghost": true,
       "notes": [
-        "Nevnt som far til Margrethe Christiansdatter Volan, Berg i Mosaegen."
+        "Nevnt som far til Margrethe Christiansdatter Volan, Berg i Mosaegen.",
+        "Fødselsår ikke kildebelagt — anslått ut fra datterens fødselsår (typisk ~27 års aldersforskjell far/barn)."
       ],
       "sources": [
         { "label": "Vielse, Inderøy", "sourceId": "pv00000008831226" }
@@ -595,9 +603,11 @@
       "ahnentafel": 40,
       "name": "Peter Vilhelm Husberg",
       "gender": "m",
+      "born": "ca. 1802",
       "ghost": true,
       "notes": [
-        "Nevnt som far til Karl August Husberg i vigselsprotokollen."
+        "Nevnt som far til Karl August Husberg i vigselsprotokollen.",
+        "Fødselsår ikke kildebelagt — anslått ut fra sønnens fødselsår (typisk ~27 års aldersforskjell far/barn)."
       ]
     },
     {
@@ -606,9 +616,11 @@
       "name": "Lauritz Lovum",
       "gender": "m",
       "place": "Borge prestegjeld",
+      "born": "ca. 1809",
       "ghost": true,
       "notes": [
-        "Nevnt som far til Anne Margrethe Lowum, f. Borge, i vigselsprotokollen."
+        "Nevnt som far til Anne Margrethe Lowum, f. Borge, i vigselsprotokollen.",
+        "Fødselsår ikke kildebelagt — anslått ut fra datterens fødselsår (typisk ~27 års aldersforskjell far/barn)."
       ]
     },
     {
@@ -618,9 +630,11 @@
       "gender": "m",
       "place": "Haga, Romedal",
       "occupation": "Bonde",
+      "born": "ca. 1805",
       "ghost": true,
       "notes": [
-        "Far til Jens Andersen Hagen (f. 1832). Bonde, Haga, Romedal."
+        "Far til Jens Andersen Hagen (f. 1832). Bonde, Haga, Romedal.",
+        "Fødselsår ikke kildebelagt — anslått ut fra sønnens fødselsår (typisk ~27 års aldersforskjell far/barn)."
       ],
       "spouseId": "anne_marie_hagen"
     },
@@ -630,9 +644,11 @@
       "name": "Anne Marie Hagen",
       "gender": "f",
       "place": "Haga, Romedal",
+      "born": "ca. 1808",
       "ghost": true,
       "notes": [
-        "Mor til Jens Andersen Hagen (f. 1832), Haga, Romedal."
+        "Mor til Jens Andersen Hagen (f. 1832), Haga, Romedal.",
+        "Fødselsår ikke kildebelagt — anslått ut fra sønnens fødselsår (typisk ~24 års aldersforskjell mor/barn)."
       ],
       "spouseId": "anders_hagen"
     },
@@ -642,9 +658,11 @@
       "name": "Johan Andreas Ferdinand Werner",
       "gender": "m",
       "occupation": "Bogbindermester",
+      "born": "ca. 1824",
       "ghost": true,
       "notes": [
-        "Far til Eduard Werner (f. 1851), grunnlegger av Werners Magasin."
+        "Far til Eduard Werner (f. 1851), grunnlegger av Werners Magasin.",
+        "Fødselsår ikke kildebelagt — anslått ut fra sønnens fødselsår (typisk ~27 års aldersforskjell far/barn)."
       ],
       "spouseId": "elisabeth_jorgensen"
     },
@@ -653,9 +671,11 @@
       "ahnentafel": 57,
       "name": "Elisabeth Jørgensen",
       "gender": "f",
+      "born": "ca. 1827",
       "ghost": true,
       "notes": [
-        "Mor til Eduard Werner (f. 1851), grunnlegger av Werners Magasin."
+        "Mor til Eduard Werner (f. 1851), grunnlegger av Werners Magasin.",
+        "Fødselsår ikke kildebelagt — anslått ut fra sønnens fødselsår (typisk ~24 års aldersforskjell mor/barn)."
       ],
       "spouseId": "johan_werner"
     },
@@ -665,9 +685,11 @@
       "name": "Martin Larsen",
       "gender": "m",
       "place": "Sande",
+      "born": "ca. 1818",
       "ghost": true,
       "notes": [
-        "Nevnt som far til Karen Martinusdatter (f. 1845), Sande."
+        "Nevnt som far til Karen Martinusdatter (f. 1845), Sande.",
+        "Fødselsår ikke kildebelagt — anslått ut fra datterens fødselsår (typisk ~27 års aldersforskjell far/barn)."
       ]
     },
     {
