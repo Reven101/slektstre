@@ -123,8 +123,11 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
   const card = (n: number) => {
     const p = byAhn(n)
     const role = ROLES[n] ?? ''
+    // 'placeholder' marks a slot with no record at all ("ukjent"), distinct from
+    // 'ghost' which real PersonCards also get when person.ghost flags them as
+    // less certain — only placeholders should be dimmed on mobile, not real people.
     if (!p) return (
-      <div key={n} className={['p-card', 'ghost', branchClass(n)].filter(Boolean).join(' ')} style={{ flex: 1, minWidth: 120 }}>
+      <div key={n} className={['p-card', 'ghost', 'placeholder', branchClass(n)].filter(Boolean).join(' ')} style={{ flex: 1, minWidth: 120 }}>
         <div className="p-body">
           <div className="p-role">{role}</div>
           <div className="p-name">ukjent</div>

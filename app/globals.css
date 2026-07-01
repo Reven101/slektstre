@@ -266,7 +266,7 @@ body::after {
 .tree-mobile .p-me-tag {
   display: none;
 }
-.tree-mobile .p-card.ghost { opacity: .45; }
+.tree-mobile .p-card.placeholder { opacity: .45; }
 
 /* ── PERSON CARD ── */
 .p-card {
