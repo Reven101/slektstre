@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Person } from './types'
 
 interface PersonCardProps {
@@ -28,6 +29,15 @@ export default function PersonCard({ person, role, onClick, searchState = '' }: 
       onKeyDown={e => e.key === 'Enter' && onClick(person)}
       aria-label={`Åpne informasjon om ${person.name}`}
     >
+      {person.photo && (
+        <Image
+          className="p-photo"
+          src={person.photo}
+          alt=""
+          width={40}
+          height={40}
+        />
+      )}
       <div className="p-role">{role}</div>
       <div className="p-name">{person.name}</div>
       {person.maiden && <div className="p-maiden">f. {person.maiden}</div>}

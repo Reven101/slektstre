@@ -1,10 +1,14 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Person, FamilyData } from './types'
 import PersonCard from './PersonCard'
 import PersonModal from './PersonModal'
+import RootedTree from './RootedTree'
+import PlacesMap from './PlacesMap'
+import Timeline from './Timeline'
 import { buildPersonMap } from './family'
+import { pct, mergeStep, stems } from './treeLayout'
 
 interface FamilyTreeProps {
   data: FamilyData
@@ -26,44 +30,6 @@ const ROLES: Record<number, string> = {
   30: 'Tipp-tippoldefar (mmm)', 31: 'Tipp-tippoldemor (mmm)',
 }
 
-/**
- * The desktop tree draws its connector lines as evenly-spaced verticals that
- * merge pairwise into their midpoint, one level per generation gap — the
- * classic pedigree-chart "Y" shape. `pct`/`mergeStep`/`stems` generate those
- * x-positions from the leaf count instead of hand-measured percentages, so
- * adding/removing generations doesn't require re-deriving pixel math by eye.
- */
-const pct = (i: number, n: number) => ((i + 0.5) / n) * 100
-
-function mergeStep(
-  positions: number[],
-  barY: number,
-  keyPrefix: string,
-  conn: (style: React.CSSProperties, key?: React.Key) => React.ReactElement
-): { elements: React.ReactElement[]; next: number[] } {
-  const elements: React.ReactElement[] = []
-  const next: number[] = []
-  for (let i = 0; i < positions.length; i += 2) {
-    const a = positions[i]
-    const b = positions[i + 1]
-    elements.push(
-      conn({ top: barY, left: `${a}%`, right: `${100 - b}%`, height: '1.5px' }, `${keyPrefix}-h${i / 2}`)
-    )
-    next.push((a + b) / 2)
-  }
-  return { elements, next }
-}
-
-function stems(
-  positions: number[],
-  top: number,
-  height: number,
-  keyPrefix: string,
-  conn: (style: React.CSSProperties, key?: React.Key) => React.ReactElement
-): React.ReactElement[] {
-  return positions.map((x, i) => conn({ top, left: `${x}%`, width: '1.5px', height }, `${keyPrefix}-v${i}`))
-}
-
 function matchesPerson(p: Person, q: string): boolean {
   const s = q.toLowerCase()
   return (
@@ -78,9 +44,45 @@ function matchesPerson(p: Person, q: string): boolean {
 export default function FamilyTree({ data }: FamilyTreeProps) {
   const [selected, setSelected] = useState<Person | null>(null)
   const [search, setSearch] = useState('')
+  const [viewMode, setViewMode] = useState<'tree' | 'timeline'>('tree')
 
   const persons = data.persons
   const personById = useMemo(() => buildPersonMap(persons), [persons])
+
+  // Delbare lenker: ?person=<id> åpner modalen direkte ved lasting, og
+  // holdes i URL-en mens man navigerer, slik at lenken kan kopieres/deles.
+  const selectPerson = (p: Person | null) => {
+    setSelected(p)
+    const url = new URL(window.location.href)
+    if (p) url.searchParams.set('person', p.id)
+    else url.searchParams.delete('person')
+    window.history.replaceState(null, '', url.toString())
+  }
+
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get('person')
+    const p = id ? personById.get(id) : undefined
+    if (p) setSelected(p)
+  }, [personById])
+
+  // Reroot-navigasjon: ?fokus=<id> bytter hovedvisningen til et tre sentrert
+  // på en vilkårlig person (forfedre + etterkommere), i stedet for det faste
+  // Simen-forankrede ahnentafel-diagrammet.
+  const [focusId, setFocusId] = useState<string | null>(null)
+
+  const setFocus = (id: string | null) => {
+    setFocusId(id)
+    const url = new URL(window.location.href)
+    if (id) url.searchParams.set('fokus', id)
+    else url.searchParams.delete('fokus')
+    window.history.replaceState(null, '', url.toString())
+  }
+
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get('fokus')
+    if (id && personById.has(id)) setFocusId(id)
+  }, [personById])
+
   const byAhnMap = useMemo(() => {
     const m = new Map<number, Person>()
     for (const p of persons) if (p.ahnentafel != null) m.set(p.ahnentafel, p)
@@ -120,7 +122,7 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
         <div className="p-name">ukjent</div>
       </div>
     )
-    return <PersonCard key={p.id} person={p} role={role} onClick={setSelected} searchState={searchState(p)} />
+    return <PersonCard key={p.id} person={p} role={role} onClick={selectPerson} searchState={searchState(p)} />
   }
 
   const conn = (style: React.CSSProperties, key?: React.Key) => (
@@ -173,8 +175,36 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
           {search && matchCount > 0 && `${matchCount} person${matchCount !== 1 ? 'er' : ''} funnet`}
           {search && matchCount === 0 && 'Ingen treff'}
         </div>
+        <div className="view-toggle">
+          <button
+            className={`view-toggle-btn${viewMode === 'tree' ? ' active' : ''}`}
+            onClick={() => setViewMode('tree')}
+          >
+            Slektstre
+          </button>
+          <button
+            className={`view-toggle-btn${viewMode === 'timeline' ? ' active' : ''}`}
+            onClick={() => setViewMode('timeline')}
+          >
+            Tidslinje
+          </button>
+        </div>
       </div>
 
+      {viewMode === 'timeline' ? (
+        <div className="page-section" style={{ marginTop: 8 }}>
+          <Timeline persons={persons} onSelect={selectPerson} />
+        </div>
+      ) : focusId && personById.get(focusId) ? (
+        <RootedTree
+          root={personById.get(focusId)!}
+          persons={persons}
+          personById={personById}
+          onSelect={selectPerson}
+          searchState={searchState}
+          onBack={() => setFocus(null)}
+        />
+      ) : (
       <div className="tree-outer">
 
         {/* ── DESKTOP TREE ── */}
@@ -260,7 +290,7 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
               <div className="gen-label">Din kjære far og hans søsken</div>
               <div style={{ display: 'flex', justifyContent: 'center', gap: 8 }}>
                 {mySiblings.map(p => (
-                  <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Tante' : 'Onkel'} onClick={setSelected} searchState={searchState(p)} />
+                  <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Tante' : 'Onkel'} onClick={selectPerson} searchState={searchState(p)} />
                 ))}
                 {card(1)}
               </div>
@@ -275,7 +305,7 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
             <div className="gen-label-m">Din kjære far og hans søsken</div>
             <div className="gen-cards-row">
               {mySiblings.map(p => (
-                <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Tante' : 'Onkel'} onClick={setSelected} searchState={searchState(p)} />
+                <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Tante' : 'Onkel'} onClick={selectPerson} searchState={searchState(p)} />
               ))}
               {card(1)}
             </div>
@@ -312,13 +342,23 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
         </div>
 
       </div>
+      )}
+
+      <div className="page-section" style={{ marginTop: 40 }}>
+        <h2 className="section-title">Hvor slekten kommer fra</h2>
+        <PlacesMap persons={persons} onSelect={selectPerson} />
+      </div>
 
       {selected && (
         <PersonModal
           person={selected}
           allPersons={persons}
-          onClose={() => setSelected(null)}
-          onNavigate={setSelected}
+          onClose={() => selectPerson(null)}
+          onNavigate={selectPerson}
+          onFocus={p => {
+            selectPerson(null)
+            setFocus(p.id)
+          }}
         />
       )}
     </>
