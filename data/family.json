@@ -327,6 +327,7 @@
       "name": "Anna Lovisa Lorentzdatter",
       "gender": "f",
       "born": "22. mar 1821",
+      "died": "1903",
       "place": "Krogshuus → Hustad",
       "ghost": true,
       "notes": [
@@ -347,6 +348,7 @@
       "name": "Sivert Pedersen Bragstad",
       "gender": "m",
       "born": "ca. 1816",
+      "died": "1871",
       "place": "Bragstad, Inderøy",
       "ghost": true,
       "notes": [
@@ -367,6 +369,7 @@
       "name": "Margrethe Christiansdatter Volan",
       "gender": "f",
       "born": "ca. 1829",
+      "died": "1909",
       "place": "Berg i Mosaegen",
       "ghost": true,
       "notes": [
