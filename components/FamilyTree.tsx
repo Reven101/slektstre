@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import { Person, FamilyData } from './types'
 import PersonCard from './PersonCard'
 import PersonModal from './PersonModal'
+import { buildPersonMap } from './family'
 
 interface FamilyTreeProps {
   data: FamilyData
@@ -25,6 +26,44 @@ const ROLES: Record<number, string> = {
   30: 'Tipp-tippoldefar (mmm)', 31: 'Tipp-tippoldemor (mmm)',
 }
 
+/**
+ * The desktop tree draws its connector lines as evenly-spaced verticals that
+ * merge pairwise into their midpoint, one level per generation gap — the
+ * classic pedigree-chart "Y" shape. `pct`/`mergeStep`/`stems` generate those
+ * x-positions from the leaf count instead of hand-measured percentages, so
+ * adding/removing generations doesn't require re-deriving pixel math by eye.
+ */
+const pct = (i: number, n: number) => ((i + 0.5) / n) * 100
+
+function mergeStep(
+  positions: number[],
+  barY: number,
+  keyPrefix: string,
+  conn: (style: React.CSSProperties, key?: React.Key) => React.ReactElement
+): { elements: React.ReactElement[]; next: number[] } {
+  const elements: React.ReactElement[] = []
+  const next: number[] = []
+  for (let i = 0; i < positions.length; i += 2) {
+    const a = positions[i]
+    const b = positions[i + 1]
+    elements.push(
+      conn({ top: barY, left: `${a}%`, right: `${100 - b}%`, height: '1.5px' }, `${keyPrefix}-h${i / 2}`)
+    )
+    next.push((a + b) / 2)
+  }
+  return { elements, next }
+}
+
+function stems(
+  positions: number[],
+  top: number,
+  height: number,
+  keyPrefix: string,
+  conn: (style: React.CSSProperties, key?: React.Key) => React.ReactElement
+): React.ReactElement[] {
+  return positions.map((x, i) => conn({ top, left: `${x}%`, width: '1.5px', height }, `${keyPrefix}-v${i}`))
+}
+
 function matchesPerson(p: Person, q: string): boolean {
   const s = q.toLowerCase()
   return (
@@ -41,7 +80,24 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
   const [search, setSearch] = useState('')
 
   const persons = data.persons
-  const byAhn = (n: number) => persons.find(p => p.ahnentafel === n)
+  const personById = useMemo(() => buildPersonMap(persons), [persons])
+  const byAhnMap = useMemo(() => {
+    const m = new Map<number, Person>()
+    for (const p of persons) if (p.ahnentafel != null) m.set(p.ahnentafel, p)
+    return m
+  }, [persons])
+  const byAhn = (n: number) => byAhnMap.get(n)
+
+  // "Far og søsken"-raden er meg (ahnentafel 1) + de av min fars barn som
+  // ikke er meg selv — utledet fra dataene i stedet for hardkodede id-er.
+  const mySiblings = useMemo(() => {
+    const me = byAhnMap.get(1)
+    const father = me?.fatherId ? personById.get(me.fatherId) : undefined
+    return (father?.children ?? [])
+      .filter((c): c is { id: string; note?: string } => typeof c !== 'string' && c.id !== me?.id)
+      .map(c => personById.get(c.id))
+      .filter((p): p is Person => !!p)
+  }, [byAhnMap, personById])
 
   const matchSet = useMemo(() => {
     if (!search.trim()) return null
@@ -70,6 +126,29 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
   const conn = (style: React.CSSProperties, key?: React.Key) => (
     <div key={key} className="conn-line" style={style} />
   )
+
+  // Connector 6→5: 16 leaves merge two levels (→8 couple-midpoints →4 group-midpoints)
+  const leaves16 = Array.from({ length: 16 }, (_, i) => pct(i, 16))
+  const conn65Verticals1 = stems(leaves16, 0, 20, 'c65-lvl0', conn)
+  const conn65Merge1 = mergeStep(leaves16, 19, 'c65-lvl0', conn)
+  const conn65Verticals2 = stems(conn65Merge1.next, 19, 22, 'c65-lvl1', conn)
+  const conn65Merge2 = mergeStep(conn65Merge1.next, 40, 'c65-lvl1', conn)
+  const conn65Verticals3 = stems(conn65Merge2.next, 40, 30, 'c65-lvl2', conn)
+
+  // Connector 5→4: 4 leaves merge one level (two independent Y-shapes, no cross-bridge)
+  const leaves4 = Array.from({ length: 4 }, (_, i) => pct(i, 4))
+  const conn54Verticals1 = stems(leaves4, 0, 18, 'c54-lvl0', conn)
+  const conn54Merge = mergeStep(leaves4, 17, 'c54-lvl0', conn)
+  const conn54Verticals2 = stems(conn54Merge.next, 17, 19, 'c54-lvl1', conn)
+
+  // Connector 4→3: 2 leaves, straight verticals, no merge
+  const leaves2 = Array.from({ length: 2 }, (_, i) => pct(i, 2))
+  const conn43Verticals = stems(leaves2, 0, 32, 'c43', conn)
+
+  // Connector 3→1: 2 leaves merge into 1 (Tom + Hilde → Simen)
+  const conn31Verticals1 = stems(leaves2, 0, 16, 'c31-lvl0', conn)
+  const conn31Merge = mergeStep(leaves2, 15, 'c31-lvl0', conn)
+  const conn31Verticals2 = stems(conn31Merge.next, 15, 17, 'c31-lvl1', conn)
 
   return (
     <>
@@ -118,34 +197,13 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
               </div>
             </div>
 
-            {/* Connector 6→5: two-level Y-shapes */}
+            {/* Connector 6→5: two-level Y-shapes, positions computed from leaf count */}
             <div className="connector" style={{ height: 70 }}>
-              {/* L1: vertical from each individual card center */}
-              {([2.95,9.13,15.52,21.70,28.07,34.25,40.64,46.82,53.19,59.37,65.75,71.94,78.31,84.49,90.87,97.06] as number[]).map((l, i) =>
-                conn({ top: 0, left: `${l}%`, width: '1.5px', height: 20 }, `c${i}`)
-              )}
-              {/* L1: within-couple horizontals */}
-              {conn({ top: 19, left: '2.95%',  right: '90.87%', height: '1.5px' }, 'ch0')}
-              {conn({ top: 19, left: '15.52%', right: '78.30%', height: '1.5px' }, 'ch1')}
-              {conn({ top: 19, left: '28.07%', right: '65.75%', height: '1.5px' }, 'ch2')}
-              {conn({ top: 19, left: '40.64%', right: '53.18%', height: '1.5px' }, 'ch3')}
-              {conn({ top: 19, left: '53.19%', right: '40.63%', height: '1.5px' }, 'ch4')}
-              {conn({ top: 19, left: '65.75%', right: '28.06%', height: '1.5px' }, 'ch5')}
-              {conn({ top: 19, left: '78.31%', right: '15.51%', height: '1.5px' }, 'ch6')}
-              {conn({ top: 19, left: '90.87%', right: '2.94%',  height: '1.5px' }, 'ch7')}
-              {/* L1→L2: gen-side center stems */}
-              {([6.04,18.60,31.16,43.72,56.28,68.84,81.40,93.96] as number[]).map((l, i) =>
-                conn({ top: 19, left: `${l}%`, width: '1.5px', height: 22 }, `gs${i}`)
-              )}
-              {/* L2: group-pair horizontals */}
-              {conn({ top: 40, left: '6.04%',  right: '81.40%', height: '1.5px' }, 'gh0')}
-              {conn({ top: 40, left: '31.16%', right: '56.28%', height: '1.5px' }, 'gh1')}
-              {conn({ top: 40, left: '56.28%', right: '31.16%', height: '1.5px' }, 'gh2')}
-              {conn({ top: 40, left: '81.40%', right: '6.04%',  height: '1.5px' }, 'gh3')}
-              {/* L2→gen5: stems down to oldeforeldre */}
-              {([12.32,37.44,62.56,87.68] as number[]).map((l, i) =>
-                conn({ top: 40, left: `${l}%`, width: '1.5px', height: 30 }, `s${i}`)
-              )}
+              {conn65Verticals1}
+              {conn65Merge1.elements}
+              {conn65Verticals2}
+              {conn65Merge2.elements}
+              {conn65Verticals3}
             </div>
 
             {/* GEN 5 — Tippoldeforeldre */}
@@ -162,16 +220,9 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
 
             {/* Connector 5→4: two Y-shapes */}
             <div className="connector" style={{ height: 36 }}>
-              {/* Left Y: (8,9)@12.5% + (10,11)@37.5% → (4,5)@25% */}
-              {conn({ top: 0, left: '12.5%', width: '1.5px', height: 18 })}
-              {conn({ top: 0, left: '37.5%', width: '1.5px', height: 18 })}
-              {conn({ top: 17, left: '12.5%', right: '62.5%', height: '1.5px' })}
-              {conn({ top: 17, left: '25%', width: '1.5px', height: 19 })}
-              {/* Right Y: (12,13)@62.5% + (14,15)@87.5% → (6,7)@75% */}
-              {conn({ top: 0, left: '62.5%', width: '1.5px', height: 18 })}
-              {conn({ top: 0, left: '87.5%', width: '1.5px', height: 18 })}
-              {conn({ top: 17, left: '62.5%', right: '12.5%', height: '1.5px' })}
-              {conn({ top: 17, left: '75%', width: '1.5px', height: 19 })}
+              {conn54Verticals1}
+              {conn54Merge.elements}
+              {conn54Verticals2}
             </div>
 
             {/* GEN 4 — Oldeforeldre */}
@@ -185,8 +236,7 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
 
             {/* Connector 4→3: straight verticals, no cross-connection */}
             <div className="connector" style={{ height: 32 }}>
-              {conn({ top: 0, left: '25%', width: '1.5px', height: 32 })}
-              {conn({ top: 0, left: '75%', width: '1.5px', height: 32 })}
+              {conn43Verticals}
             </div>
 
             {/* GEN 3 — Besteforeldre */}
@@ -198,23 +248,20 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
               </div>
             </div>
 
-            {/* Connector 3→1: Tom@25% + Hilde@75% → Simen@50% */}
+            {/* Connector 3→1: Tom + Hilde → Simen */}
             <div className="connector" style={{ height: 32 }}>
-              {conn({ top: 0, left: '25%', width: '1.5px', height: 16 })}
-              {conn({ top: 0, left: '75%', width: '1.5px', height: 16 })}
-              {conn({ top: 15, left: '25%', right: '25%', height: '1.5px' })}
-              {conn({ top: 15, left: '50%', width: '1.5px', height: 17 })}
+              {conn31Verticals1}
+              {conn31Merge.elements}
+              {conn31Verticals2}
             </div>
 
             {/* GEN 1 — Far og søsken */}
             <div className="gen">
               <div className="gen-label">Din kjære far og hans søsken</div>
               <div style={{ display: 'flex', justifyContent: 'center', gap: 8 }}>
-                {(['ketil', 'pal', 'bente_m'] as const).map(id => {
-                  const p = persons.find(x => x.id === id)
-                  if (!p) return null
-                  return <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Tante' : 'Onkel'} onClick={setSelected} searchState={searchState(p)} />
-                })}
+                {mySiblings.map(p => (
+                  <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Tante' : 'Onkel'} onClick={setSelected} searchState={searchState(p)} />
+                ))}
                 {card(1)}
               </div>
             </div>
@@ -227,11 +274,9 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
           <div className="gen-section">
             <div className="gen-label-m">Din kjære far og hans søsken</div>
             <div className="gen-cards-row">
-              {(['ketil', 'pal', 'bente_m'] as const).map(id => {
-                const p = persons.find(x => x.id === id)
-                if (!p) return null
-                return <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Tante' : 'Onkel'} onClick={setSelected} searchState={searchState(p)} />
-              })}
+              {mySiblings.map(p => (
+                <PersonCard key={p.id} person={p} role={p.gender === 'f' ? 'Tante' : 'Onkel'} onClick={setSelected} searchState={searchState(p)} />
+              ))}
               {card(1)}
             </div>
           </div>

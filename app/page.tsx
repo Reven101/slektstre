@@ -13,6 +13,13 @@ export default function Home() {
     .filter(n => !isNaN(n))
   const yearSpan = years.length > 0 ? Math.max(...years) - Math.min(...years) : 0
 
+  // Ahnentafel-nummer n tilhører generasjon floor(log2(n)) + 1 (1=proband,
+  // 2–3=besteforeldre, osv.) — utledes fra dataene i stedet for hardkodet tall.
+  const ahnentafelNumbers = data.persons.map(p => p.ahnentafel).filter((n): n is number => n != null)
+  const generations = ahnentafelNumbers.length > 0
+    ? Math.floor(Math.log2(Math.max(...ahnentafelNumbers))) + 1
+    : 0
+
   return (
     <>
       <header className="site-header">
@@ -27,7 +34,7 @@ export default function Home() {
             <span className="stat-label">Personer</span>
           </div>
           <div className="stat-item">
-            <span className="stat-num">6</span>
+            <span className="stat-num">{generations}</span>
             <span className="stat-label">Generasjoner</span>
           </div>
           <div className="stat-item">

@@ -17,8 +17,18 @@ export type Person = {
   marriedDate?: string
   marriedYear?: string
   sources?: { label: string; sourceId?: string }[]
-  children?: string[]
+  children?: ChildEntry[]
 }
+
+/**
+ * A child mentioned on a parent's record. Most children in this dataset are
+ * only known by name (no separate Person record exists for them), so they're
+ * plain display strings. When a child *does* have its own Person record
+ * elsewhere in the dataset, use the `{ id }` form instead of duplicating
+ * their name/dates as text — the UI resolves the reference and renders it as
+ * a clickable link to that person's own record.
+ */
+export type ChildEntry = string | { id: string; note?: string }
 
 export type FamilyData = {
   persons: Person[]
