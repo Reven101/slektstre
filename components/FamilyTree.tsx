@@ -36,6 +36,12 @@ const ROLES: Record<number, string> = {
 for (let n = 32; n <= 63; n++) {
   ROLES[n] = n % 2 === 0 ? 'Tipp-tipp-tippoldefar' : 'Tipp-tipp-tippoldemor'
 }
+// Generasjon 7 (ahnentafel 64–127): ingen faste kort i selve treet ennå (verken
+// desktop- eller mobilvisningen render noe forbi 63), men "Utforsk"-fanen kan
+// avdekke dem ett trykk om gangen, så de trenger en rolleetikett når de vises der.
+for (let n = 64; n <= 127; n++) {
+  ROLES[n] = n % 2 === 0 ? 'Tipp-tipp-tipp-tippoldefar' : 'Tipp-tipp-tipp-tippoldemor'
+}
 
 function matchesPerson(p: Person, q: string): boolean {
   const s = q.toLowerCase()
@@ -175,11 +181,11 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
 
   // "Utforsk"-fanen: viser bare Simen til å begynne med, og avdekker
   // foreldrene til en person ett trykk om gangen i stedet for å rendre alle
-  // 45 med en gang — samme ahnentafel-tallene som resten av treet (n's
+  // personene med en gang — samme ahnentafel-tallene som resten av treet (n's
   // foreldre er 2n og 2n+1), bare tegnet som et nedtrekkbart forgreiningstre.
   const renderExplorerNode = (n: number, key: React.Key): React.ReactNode => {
     const isExpanded = expandedNodes.has(n)
-    const canExpand = n <= 31
+    const canExpand = n <= 63
     return (
       <div className="explore-node" key={key}>
         <div className="explore-row">

@@ -313,11 +313,13 @@
       "place": "Hustad, Inderøy",
       "ghost": true,
       "notes": [
-        "Sønn av en Tørris (derav patronymet Tørrissen).",
+        "Sønn av Tørris Ottesen Hustad (derav patronymet Tørrissen) og Elen Johansdatter Hustad — oppført i Geni.com, ikke verifisert.",
         "Giftet seg med Anna Lovisa Lorentzdatter fra Krogshuus.",
         "Døde 22 år gammel, kun 3 år etter sønnens fødsel."
       ],
-      "spouseId": "anna_lovisa"
+      "spouseId": "anna_lovisa",
+      "fatherId": "torris_ottesen",
+      "motherId": "elen_johansdatter"
     },
     {
       "id": "anna_lovisa",
@@ -325,6 +327,7 @@
       "name": "Anna Lovisa Lorentzdatter",
       "gender": "f",
       "born": "22. mar 1821",
+      "died": "1903",
       "place": "Krogshuus → Hustad",
       "ghost": true,
       "notes": [
@@ -345,10 +348,11 @@
       "name": "Sivert Pedersen Bragstad",
       "gender": "m",
       "born": "ca. 1816",
+      "died": "1871",
       "place": "Bragstad, Inderøy",
       "ghost": true,
       "notes": [
-        "Far: Peder Sivertsen Bragstad.",
+        "Far: Peder Sivertsen Bragstad. Mor: Kjersten Nilsdatter Bragstad (oppført i Geni.com, ikke verifisert).",
         "Alder ved vielse: 32 år (beregnet f. 1816).",
         "Giftet seg med Margrethe Christiansdatter Volan fra Berg i Mosaegen."
       ],
@@ -356,7 +360,8 @@
         { "label": "Vielse, Inderøy", "sourceId": "pv00000008831226" }
       ],
       "spouseId": "margrethe_volan",
-      "fatherId": "peder_bragstad"
+      "fatherId": "peder_bragstad",
+      "motherId": "kjersten_bragstad"
     },
     {
       "id": "margrethe_volan",
@@ -364,6 +369,7 @@
       "name": "Margrethe Christiansdatter Volan",
       "gender": "f",
       "born": "ca. 1829",
+      "died": "1909",
       "place": "Berg i Mosaegen",
       "ghost": true,
       "notes": [
@@ -584,6 +590,12 @@
       ],
       "sources": [
         { "label": "Vielse, Inderøy", "sourceId": "pv00000008831226" }
+      ],
+      "spouseId": "kjersten_bragstad",
+      "fatherId": "sivert_norem",
+      "motherId": "ane_norem",
+      "children": [
+        { "id": "sivert_bragstad" }
       ]
     },
     {
@@ -694,6 +706,113 @@
         "Nevnt som far til Karen Martinusdatter (f. 1845), Sande.",
         "Fødselsår ikke kildebelagt — anslått ut fra datterens fødselsår (typisk ~27 års aldersforskjell far/barn)."
       ]
+    },
+    {
+      "id": "torris_ottesen",
+      "ahnentafel": 32,
+      "name": "Tørris Ottesen Hustad",
+      "gender": "m",
+      "born": "1801",
+      "died": "1852",
+      "place": "Inderøy",
+      "ghost": true,
+      "notes": [
+        "Oppført i Geni.com (søk 2026) som far til Ole Tørrissen Hustad (f. 1830) — ikke verifisert mot primærkilde (kirkebok).",
+        "Patronymet «Ottesen» tilsier at hans far het Otte."
+      ],
+      "spouseId": "elen_johansdatter",
+      "fatherId": "otte_heggdal",
+      "motherId": "martha_heggdal",
+      "children": [
+        { "id": "ole_torrissen" }
+      ]
+    },
+    {
+      "id": "elen_johansdatter",
+      "ahnentafel": 33,
+      "name": "Elen Johansdatter Hustad",
+      "gender": "f",
+      "place": "Inderøy",
+      "ghost": true,
+      "notes": [
+        "Oppført i Geni.com (søk 2026) som mor til Ole Tørrissen Hustad (f. 1830) — ikke verifisert mot primærkilde.",
+        "Fødselsår og foreldre ukjent. Patronymet «Johansdatter» tilsier at hennes far het Johan."
+      ],
+      "spouseId": "torris_ottesen"
+    },
+    {
+      "id": "kjersten_bragstad",
+      "ahnentafel": 37,
+      "name": "Kjersten Nilsdatter Bragstad",
+      "gender": "f",
+      "place": "Inderøy",
+      "ghost": true,
+      "notes": [
+        "Oppført i Geni.com (søk 2026) som mor til Sivert Pedersen Bragstad (f. ca. 1816) — ikke verifisert mot primærkilde.",
+        "Patronymet «Nilsdatter» tilsier at hennes far het Nils."
+      ],
+      "spouseId": "peder_bragstad"
+    },
+    {
+      "id": "otte_heggdal",
+      "ahnentafel": 64,
+      "name": "Otte Tørrisen Heggdal",
+      "gender": "m",
+      "born": "1761",
+      "died": "1858",
+      "place": "Heggdal, Inderøy",
+      "ghost": true,
+      "notes": [
+        "Oppført i Geni.com (søk 2026) som far til Tørris Ottesen Hustad (f. 1801) — ikke verifisert mot primærkilde.",
+        "Skal etter Geni.com ha blitt 97 år gammel (1761–1858) — uvanlig høy levealder for perioden, verdt å dobbeltsjekke."
+      ],
+      "spouseId": "martha_heggdal",
+      "children": [
+        { "id": "torris_ottesen" }
+      ]
+    },
+    {
+      "id": "martha_heggdal",
+      "ahnentafel": 65,
+      "name": "Martha Thomasdatter Heggdal",
+      "gender": "f",
+      "place": "Heggdal, Inderøy",
+      "ghost": true,
+      "notes": [
+        "Oppført i Geni.com (søk 2026) som mor til Tørris Ottesen Hustad (f. 1801) — ikke verifisert mot primærkilde.",
+        "Patronymet «Thomasdatter» tilsier at hennes far het Thomas."
+      ],
+      "spouseId": "otte_heggdal"
+    },
+    {
+      "id": "sivert_norem",
+      "ahnentafel": 72,
+      "name": "Sivert Pedersen Norem",
+      "gender": "m",
+      "born": "ca. 1745",
+      "place": "Inderøy",
+      "ghost": true,
+      "notes": [
+        "Oppført i Geni.com (søk 2026) som far til Peder Sivertsen Bragstad (#36) — ikke verifisert mot primærkilde.",
+        "Patronymet «Pedersen» tilsier at hans far het Peder. Knyttet til Norem-gården på Inderøy."
+      ],
+      "spouseId": "ane_norem",
+      "children": [
+        { "id": "peder_bragstad" }
+      ]
+    },
+    {
+      "id": "ane_norem",
+      "ahnentafel": 73,
+      "name": "Ane Joensdatter Norem",
+      "gender": "f",
+      "place": "Inderøy",
+      "ghost": true,
+      "notes": [
+        "Oppført i Geni.com (søk 2026) som mor til Peder Sivertsen Bragstad (#36) — ikke verifisert mot primærkilde.",
+        "Patronymet «Joensdatter» tilsier at hennes far het Joen/Johannes."
+      ],
+      "spouseId": "sivert_norem"
     },
     {
       "id": "ketil",
