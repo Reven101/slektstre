@@ -51,8 +51,11 @@ function matchesPerson(p: Person, q: string): boolean {
 export default function FamilyTree({ data }: FamilyTreeProps) {
   const [selected, setSelected] = useState<Person | null>(null)
   const [search, setSearch] = useState('')
-  const [viewMode, setViewMode] = useState<'tree' | 'timeline'>('tree')
+  const [viewMode, setViewMode] = useState<'tree' | 'timeline' | 'explore'>('tree')
   const [activeSection, setActiveSection] = useState(0)
+  // Utforsk-fanen: hvilke ahnentafel-numre er "åpnet" (foreldrene deres vist).
+  // Starter med noen nivåer åpne så treet ikke ser tomt ut ved første last.
+  const [expandedNodes, setExpandedNodes] = useState<Set<number>>(new Set([1, 2, 3]))
 
   const persons = data.persons
   const personById = useMemo(() => buildPersonMap(persons), [persons])
@@ -161,6 +164,48 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
     return <PersonCard key={p.id} person={p} role={role} onClick={selectPerson} searchState={searchState(p)} />
   }
 
+  const toggleExpanded = (n: number) => {
+    setExpandedNodes(prev => {
+      const next = new Set(prev)
+      if (next.has(n)) next.delete(n)
+      else next.add(n)
+      return next
+    })
+  }
+
+  // "Utforsk"-fanen: viser bare Simen til å begynne med, og avdekker
+  // foreldrene til en person ett trykk om gangen i stedet for å rendre alle
+  // 45 med en gang — samme ahnentafel-tallene som resten av treet (n's
+  // foreldre er 2n og 2n+1), bare tegnet som et nedtrekkbart forgreiningstre.
+  const renderExplorerNode = (n: number, key: React.Key): React.ReactNode => {
+    const isExpanded = expandedNodes.has(n)
+    const canExpand = n <= 31
+    return (
+      <div className="explore-node" key={key}>
+        <div className="explore-row">
+          {card(n)}
+          {canExpand && (
+            <button
+              className={`explore-toggle${isExpanded ? ' expanded' : ''}`}
+              onClick={() => toggleExpanded(n)}
+              aria-expanded={isExpanded}
+              aria-label={isExpanded ? 'Skjul foreldrene' : 'Vis foreldrene'}
+              title={isExpanded ? 'Skjul foreldrene' : 'Vis foreldrene'}
+            >
+              +
+            </button>
+          )}
+        </div>
+        {isExpanded && canExpand && (
+          <div className="explore-children">
+            {renderExplorerNode(n * 2, 'father')}
+            {renderExplorerNode(n * 2 + 1, 'mother')}
+          </div>
+        )}
+      </div>
+    )
+  }
+
   // Mobile-only: the same generations as the desktop tree, flattened into a
   // list so each can get a scroll-anchor id (for the gen-nav jump dots below)
   // and a running generation number (for the gen-badge in its header).
@@ -253,12 +298,25 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
           >
             Tidslinje
           </button>
+          <button
+            className={`view-toggle-btn${viewMode === 'explore' ? ' active' : ''}`}
+            onClick={() => setViewMode('explore')}
+          >
+            Utforsk
+          </button>
         </div>
       </div>
 
       {viewMode === 'timeline' ? (
         <div className="page-section" style={{ marginTop: 8 }}>
           <Timeline persons={persons} onSelect={selectPerson} />
+        </div>
+      ) : viewMode === 'explore' ? (
+        <div className="page-section" style={{ marginTop: 8 }}>
+          <p className="explore-hint">Trykk på <strong>+</strong> for å avdekke neste generasjon bakover.</p>
+          <div className="explore-tree tree-mobile">
+            {renderExplorerNode(1, 'root')}
+          </div>
         </div>
       ) : focusId && personById.get(focusId) ? (
         <RootedTree
