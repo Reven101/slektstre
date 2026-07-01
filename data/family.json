@@ -332,7 +332,9 @@
       "sources": [
         { "label": "Fødte og døpte 1821, Inderøy", "sourceId": "pd00000041360861" }
       ],
-      "spouseId": "ole_torrissen"
+      "spouseId": "ole_torrissen",
+      "fatherId": "lorentz_aagesen",
+      "motherId": "johanna_larsdatter"
     },
     {
       "id": "sivert_bragstad",
@@ -350,7 +352,8 @@
       "sources": [
         { "label": "Vielse, Inderøy", "sourceId": "pv00000008831226" }
       ],
-      "spouseId": "margrethe_volan"
+      "spouseId": "margrethe_volan",
+      "fatherId": "peder_bragstad"
     },
     {
       "id": "margrethe_volan",
@@ -367,7 +370,8 @@
       "sources": [
         { "label": "Vielse, Inderøy", "sourceId": "pv00000008831226" }
       ],
-      "spouseId": "sivert_bragstad"
+      "spouseId": "sivert_bragstad",
+      "fatherId": "kristian_volan"
     },
     {
       "id": "carl_a_husberg",
@@ -385,7 +389,8 @@
         "Bosted 1865: St. Mariæ Gaden, Sarpsborg.",
         "Barn: Anna Wilhelmine (f. ca. 1863), Carl Amandus (f. 1865), Ludvig (f. 27. jun 1869), Marthe Fredrikke (g.m. Pharo 1898)."
       ],
-      "spouseId": "anne_m_lowum"
+      "spouseId": "anne_m_lowum",
+      "fatherId": "peter_husberg"
     },
     {
       "id": "anne_m_lowum",
@@ -398,7 +403,8 @@
         "Far: Lauritz Lovum.",
         "Oppført som «Anne Margrethe Lovum, Jfr., f. Borge» i vigselsprotokollen."
       ],
-      "spouseId": "carl_a_husberg"
+      "spouseId": "carl_a_husberg",
+      "fatherId": "lauritz_lovum"
     },
     {
       "id": "jens_hagen",
@@ -417,6 +423,8 @@
         "Datter Agnethe Jensine (f. 1872) giftet seg med overretssagfører Karl Amandus Husberg."
       ],
       "spouseId": "christiana_hagen",
+      "fatherId": "anders_hagen",
+      "motherId": "anne_marie_hagen",
       "children": [
         "Hagbart Adolf Hagen (f. 1858)",
         "Anna Berthea Hagen (f. 1859)",
@@ -495,7 +503,9 @@
         "Butikk: Tollbodgaten 4 fra 1900. Ca. 50 ansatte på slutten av 1930-tallet.",
         "Virksomhet: signalamper til NSB, lanterner til marinen, glass, steintøy, porselen."
       ],
-      "spouseId": "karen_werner"
+      "spouseId": "karen_werner",
+      "fatherId": "johan_werner",
+      "motherId": "elisabeth_jorgensen"
     },
     {
       "id": "karen_werner",
@@ -505,7 +515,8 @@
       "born": "21. jul 1845",
       "place": "Sande",
       "notes": ["Far: Martin Larsen. Gift med Eduard Werner."],
-      "spouseId": "eduard_werner"
+      "spouseId": "eduard_werner",
+      "fatherId": "martin_larsen"
     },
     {
       "id": "carl_olsen",
@@ -523,6 +534,141 @@
       "gender": "f",
       "place": "Grønland, Drammen",
       "spouseId": "carl_olsen"
+    },
+    {
+      "id": "lorentz_aagesen",
+      "ahnentafel": 34,
+      "name": "Lorentz Aagesen",
+      "gender": "m",
+      "ghost": true,
+      "notes": [
+        "Nevnt som far til Anna Lovisa Lorentzdatter (døpt 1821, Inderøy)."
+      ],
+      "sources": [
+        { "label": "Fødte og døpte 1821, Inderøy", "sourceId": "pd00000041360861" }
+      ],
+      "spouseId": "johanna_larsdatter"
+    },
+    {
+      "id": "johanna_larsdatter",
+      "ahnentafel": 35,
+      "name": "Johanna Larsdatter",
+      "gender": "f",
+      "place": "Krogshuus",
+      "ghost": true,
+      "notes": [
+        "Nevnt som mor til Anna Lovisa Lorentzdatter (døpt 1821, Inderøy)."
+      ],
+      "sources": [
+        { "label": "Fødte og døpte 1821, Inderøy", "sourceId": "pd00000041360861" }
+      ],
+      "spouseId": "lorentz_aagesen"
+    },
+    {
+      "id": "peder_bragstad",
+      "ahnentafel": 36,
+      "name": "Peder Sivertsen Bragstad",
+      "gender": "m",
+      "ghost": true,
+      "notes": [
+        "Nevnt som far til Sivert Pedersen Bragstad (f. ca. 1816) i vielsesprotokollen."
+      ],
+      "sources": [
+        { "label": "Vielse, Inderøy", "sourceId": "pv00000008831226" }
+      ]
+    },
+    {
+      "id": "kristian_volan",
+      "ahnentafel": 38,
+      "name": "Kristian Pedersen Volan",
+      "gender": "m",
+      "ghost": true,
+      "notes": [
+        "Nevnt som far til Margrethe Christiansdatter Volan, Berg i Mosaegen."
+      ],
+      "sources": [
+        { "label": "Vielse, Inderøy", "sourceId": "pv00000008831226" }
+      ]
+    },
+    {
+      "id": "peter_husberg",
+      "ahnentafel": 40,
+      "name": "Peter Vilhelm Husberg",
+      "gender": "m",
+      "ghost": true,
+      "notes": [
+        "Nevnt som far til Karl August Husberg i vigselsprotokollen."
+      ]
+    },
+    {
+      "id": "lauritz_lovum",
+      "ahnentafel": 42,
+      "name": "Lauritz Lovum",
+      "gender": "m",
+      "place": "Borge prestegjeld",
+      "ghost": true,
+      "notes": [
+        "Nevnt som far til Anne Margrethe Lowum, f. Borge, i vigselsprotokollen."
+      ]
+    },
+    {
+      "id": "anders_hagen",
+      "ahnentafel": 44,
+      "name": "Anders Hagen",
+      "gender": "m",
+      "place": "Haga, Romedal",
+      "occupation": "Bonde",
+      "ghost": true,
+      "notes": [
+        "Far til Jens Andersen Hagen (f. 1832). Bonde, Haga, Romedal."
+      ],
+      "spouseId": "anne_marie_hagen"
+    },
+    {
+      "id": "anne_marie_hagen",
+      "ahnentafel": 45,
+      "name": "Anne Marie Hagen",
+      "gender": "f",
+      "place": "Haga, Romedal",
+      "ghost": true,
+      "notes": [
+        "Mor til Jens Andersen Hagen (f. 1832), Haga, Romedal."
+      ],
+      "spouseId": "anders_hagen"
+    },
+    {
+      "id": "johan_werner",
+      "ahnentafel": 56,
+      "name": "Johan Andreas Ferdinand Werner",
+      "gender": "m",
+      "occupation": "Bogbindermester",
+      "ghost": true,
+      "notes": [
+        "Far til Eduard Werner (f. 1851), grunnlegger av Werners Magasin."
+      ],
+      "spouseId": "elisabeth_jorgensen"
+    },
+    {
+      "id": "elisabeth_jorgensen",
+      "ahnentafel": 57,
+      "name": "Elisabeth Jørgensen",
+      "gender": "f",
+      "ghost": true,
+      "notes": [
+        "Mor til Eduard Werner (f. 1851), grunnlegger av Werners Magasin."
+      ],
+      "spouseId": "johan_werner"
+    },
+    {
+      "id": "martin_larsen",
+      "ahnentafel": 58,
+      "name": "Martin Larsen",
+      "gender": "m",
+      "place": "Sande",
+      "ghost": true,
+      "notes": [
+        "Nevnt som far til Karen Martinusdatter (f. 1845), Sande."
+      ]
     },
     {
       "id": "ketil",

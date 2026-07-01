@@ -29,6 +29,13 @@ const ROLES: Record<number, string> = {
   28: 'Tipp-tippoldefar (mmf)', 29: 'Tipp-tippoldemor (mmf)',
   30: 'Tipp-tippoldefar (mmm)', 31: 'Tipp-tippoldemor (mmm)',
 }
+// Generasjon 7 (ahnentafel 32–63): 32 personer er for mange til å gi hver sin
+// unike stiavkode uten at etiketten blir uleselig i et lite kort, så denne
+// tieren dropper parentesen og bruker bare rollenavnet (samme konvensjon som
+// slektskapskalkulatoren i family.ts).
+for (let n = 32; n <= 63; n++) {
+  ROLES[n] = n % 2 === 0 ? 'Tipp-tipp-tippoldefar' : 'Tipp-tipp-tippoldemor'
+}
 
 function matchesPerson(p: Person, q: string): boolean {
   const s = q.toLowerCase()
@@ -129,6 +136,13 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
     <div key={key} className="conn-line" style={style} />
   )
 
+  // Connector 7→6: 32 leaves merge one level (→16 couple-midpoints), landing
+  // directly on GEN 6's 16 individual card positions (also pct(i,16)).
+  const leaves32 = Array.from({ length: 32 }, (_, i) => pct(i, 32))
+  const conn76Verticals1 = stems(leaves32, 0, 20, 'c76-lvl0', conn)
+  const conn76Merge = mergeStep(leaves32, 19, 'c76-lvl0', conn)
+  const conn76Verticals2 = stems(conn76Merge.next, 19, 22, 'c76-lvl1', conn)
+
   // Connector 6→5: 16 leaves merge two levels (→8 couple-midpoints →4 group-midpoints)
   const leaves16 = Array.from({ length: 16 }, (_, i) => pct(i, 16))
   const conn65Verticals1 = stems(leaves16, 0, 20, 'c65-lvl0', conn)
@@ -210,6 +224,29 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
         {/* ── DESKTOP TREE ── */}
         <div className="tree-desktop">
           <div className="tree">
+
+            {/* GEN 7 — Tipp-tipp-tippoldeforeldre */}
+            <div className="gen">
+              <div className="gen-label">Tipp-tipp-tippoldeforeldre</div>
+              <div className="gen-row">
+                {Array.from({ length: 32 }, (_, i) => i + 32).reduce<number[][]>((acc, n, i) => {
+                  if (i % 2 === 0) acc.push([n])
+                  else acc[acc.length - 1].push(n)
+                  return acc
+                }, []).map((pair, i) => (
+                  <div key={i} className="gen-side">
+                    {pair.map(n => card(n))}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Connector 7→6: one-level merge, positions computed from leaf count */}
+            <div className="connector" style={{ height: 42 }}>
+              {conn76Verticals1}
+              {conn76Merge.elements}
+              {conn76Verticals2}
+            </div>
 
             {/* GEN 6 — Tipp-tippoldeforeldre */}
             <div className="gen">
@@ -337,6 +374,13 @@ export default function FamilyTree({ data }: FamilyTreeProps) {
             <div className="gen-label-m">Tipp-tippoldeforeldre</div>
             <div className="gen-cards-row">
               {([16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31] as number[]).map(n => card(n))}
+            </div>
+          </div>
+
+          <div className="gen-section">
+            <div className="gen-label-m">Tipp-tipp-tippoldeforeldre</div>
+            <div className="gen-cards-row">
+              {Array.from({ length: 32 }, (_, i) => i + 32).map(n => card(n))}
             </div>
           </div>
         </div>
